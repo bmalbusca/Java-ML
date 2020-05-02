@@ -23,23 +23,30 @@ X1 X2 X3    ...  XX C
 **model B(X,G,Theta)**
 
 > **X** - Input dataset
+>
 > **G** - Graph   G(X,E); X=nodes , E=edges 
+>
 > ***Theta*** -  BNC  parameter that can be call  as weights or probabilities 
 
 
 
-* ***Theta*** = { P(Xi=x_{ik}|{Parents}), .. , (theta_{ijkc}) }*
+* ***Theta*** = { P(Xi=$$x_{ik}$$ |{Parents}), .. , ($$theta_{ijkc}$$) }
 
 for each i, or X1,.., Xn:
-**theta_{ijkc}** = (Nijkc + N') / (Nijc^{k} + ri \* N') 
-**theta_{c}** = (Nc + N')/ (N + ri \* N') 
+**$$theta_{ijkc}$$** = ($$N_ijkc$$ + N') / ($$Nijc^K$$} + ri \* N') 
+**$$theta_{c}$$** = (Nc + N')/ (N + ri \* N') 
 
 > N' = 0.5
+>
 > Nc - # de valores de C
+>
 > N - # linhas de T
-> Nijkc - # valores possiveis para a config i^j^
-> Nijc^k^ - # valores possiveis que o parent de Nijkc pode ter
-> pi_Xi - conjunto de possiveis parents de  Xi em G, excluindo C
+>
+> Nijkc - # valores possiveis para a config i=i',j=j',k=k' e c=z
+>
+> $${Nijc^{k}}$$ - # valores possiveis que o parent de $$N_{ijkc}$$ pode ter
+>
+> $$\Pi_{X_{i}}$$ - conjunto de possiveis parents de  Xi em G, excluindo C
 
 
 ```
@@ -64,7 +71,9 @@ evaluation = score(Y_benchmark, Y' )
 
 
 >   ***Definitions:***
+>
 >    TAN approx. to BNC 
+>
 >    TAN means Tree argumented Naive Bayes Classifier 
 
 **Flowchart**
