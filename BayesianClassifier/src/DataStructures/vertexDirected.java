@@ -1,11 +1,11 @@
 package DataStructures;
 
-public class vertexID extends vertex{
+public class vertexDirected extends vertex{
 	
 	protected int childID; //vertex's end-point ID
 
 	//constructor
-	public vertexID(int pID, int weight) {
+	public vertexDirected(int pID, int weight) {
 		super(weight);
 		this.childID = pID; 
 		
