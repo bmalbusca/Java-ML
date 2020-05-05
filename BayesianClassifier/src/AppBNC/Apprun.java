@@ -1,4 +1,4 @@
-package BayesianTAN;
+package AppBNC;
 import DataStructures.*;
 
 

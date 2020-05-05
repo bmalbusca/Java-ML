@@ -1,5 +1,8 @@
 package GraphsMST;
 
-public class Kruskal {
+public class Prim {
+
+
+
 
 }

@@ -18,6 +18,9 @@ public class DirGraph implements graph{
 	}
 	
 	
+
+	
+	
 	
 	public void addEdge( int nodeID , vertexDirected v) {
 		G.get(nodeID).add(v);
