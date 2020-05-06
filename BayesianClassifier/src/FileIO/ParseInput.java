@@ -37,8 +37,7 @@ public class ParseInput {
 	
 	
 	public void testFile(String filepath) {
-		
-		
+			
 		File file = new File(filepath);
 		
 		if (!file.exists()){

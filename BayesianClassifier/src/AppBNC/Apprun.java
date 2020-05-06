@@ -18,21 +18,13 @@ public class Apprun {
 	
 	public static void main(String[] args) throws FileNotFoundException {
 		
-		 
-		
-		ArrayList<ArrayList<String>> dataset; 
 		
 		
 		ParseInput param = new ParseInput(args); 
 		ReadCSV file = new ReadCSV(param.trainfile);
-		
-		
-		dataset = file.data();
+		file.print();
 	
-		for(int i = 0; i<file.N(); ++i) {
-			System.out.println(dataset.get(i));	
-			
-		}
+
 	
 	}
 

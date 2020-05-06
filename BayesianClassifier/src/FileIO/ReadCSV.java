@@ -4,24 +4,21 @@ import java.io.*;
 import java.util.ArrayList;
 
 
-public class ReadCSV {
+public class ReadCSV implements readFile {
 	
 	protected BufferedReader file;
-	protected boolean header = false;   	//detect header NOT USED YET
-	protected int N=-1; 					// dataset size (number of lines) 
-	
-	protected ArrayList<ArrayList<String>> T; /* MUDAR ISTO PARA UM OBJECTO */
+	protected dataset T; 
 	
 	public ReadCSV(String filecsv) throws FileNotFoundException {
 		
 		
 		try {
-			
-			
+				
 		
 			file = new BufferedReader(new FileReader(filecsv));
 			String line;
-			T = new ArrayList<ArrayList<String>>();
+			T = new dataset();
+			T.N_size=-1; 			//empty
 		
 			while ((line = file.readLine()) != null) {
 				
@@ -38,12 +35,11 @@ public class ReadCSV {
 				
 				
 				T.add(row);
-				++N;
+				++T.N_size;
 
 			}
 		
-			
-		
+				
 		} catch (IOException e) {
 			
 			e.printStackTrace();
@@ -55,27 +51,32 @@ public class ReadCSV {
 	public void close() throws FileNotFoundException {
 		
 		try {
-			
 			file.close();
-		
-		}
-		
-		catch (IOException e) {
-				
+		}	
+		catch (IOException e) {		
 				e.printStackTrace();
 			}
 		
 	}
 	
+	public void print() {
+		
+		if (T != null && this.T.N_size > 0) {
+			for(int i = 0; i< this.T.N_size; ++i) {
+				System.out.println(T.getRow(i));	
+			}
+		}
+		else {
+			System.out.println("Data set is Empty!");
+		}
+	}
 	
 	
-	public ArrayList<ArrayList<String>> data(){
+	public dataset data(){
 		return T;
 	}
 	
-	public int N() {
-		return N;
-	}
+	
 	
 	
 	
