@@ -2,14 +2,14 @@ package DataStructures;
 
 import java.util.ArrayList;
 
-public class DirGraph implements graph{
+public class DirGraphTree implements graph{
 
 	protected int num_nodes;
 	
 	 
 	public ArrayList<ArrayList<vertexDirected>>  G;  //array of nodes
 	
-	public DirGraph(int num_nodes) {
+	public DirGraphTree(int num_nodes) {
 	
 		this.num_nodes= num_nodes;
 		initG(num_nodes);

@@ -6,15 +6,15 @@ import java.util.ArrayList; // import the ArrayList class
 
 public class UndirFullGraph implements graph {
 
-	protected int num_nodes;
+	protected int n;	// number of nodes Xi
+	public ArrayList<ArrayList<node>>  G;  // array of nodes
 	
-	 
-	public ArrayList<ArrayList<vertex>>  G;  // array of nodes
 	
-	public UndirFullGraph(int num_nodes) {	 // (num_nodes x num_nodes) size
+	//constructor
+	public UndirFullGraph(int num_nodes) {	 
 	
-		this.num_nodes= num_nodes;
-		initG(num_nodes);
+		this.n= num_nodes;		   // (num_nodes x num_nodes) size
+		initG(num_nodes);				   // graph initialization
 		
 		
 		
@@ -65,12 +65,14 @@ public class UndirFullGraph implements graph {
 
 	
 	@Override
-	public void initG(int n_nodes) {
+	  public void initG(int n_nodes) {
+	 
 		
-		G = new ArrayList<ArrayList<vertex>>(n_nodes);
-						// -1 means infinite weight (alpha)
-		
+		G = new ArrayList<node>(n_nodes);
+							
 		for (int i = 0; i < n_nodes; i++) {
+			
+			
            G.add(new ArrayList<vertex>(n_nodes));
 		   
            for(int j =0; j < n_nodes; j++ ) {	//initialization
@@ -80,7 +82,7 @@ public class UndirFullGraph implements graph {
 	}
 	
 	
-	
+
 	
 	
 	/** initG
@@ -103,6 +105,25 @@ public class UndirFullGraph implements graph {
 	}
 
 	
+	
+	/*
+	  public void initG(int n_nodes) {
+	 
+		
+		G = new ArrayList<ArrayList<nodes>>(n_nodes);
+						
+		
+		for (int i = 0; i < n_nodes; i++) {
+         G.add(new ArrayList<vertex>(n_nodes));
+		   
+         for(int j =0; j < n_nodes; j++ ) {	//initialization
+			   addEdge( i ,  new vertex(-1));		  
+		   }		  
+		}			
+	}
+	
+	
+	*/
 	
 	
 	

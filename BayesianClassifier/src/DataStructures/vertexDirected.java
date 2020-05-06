@@ -2,17 +2,17 @@ package DataStructures;
 
 public class vertexDirected extends vertex{
 	
-	protected int childID; //vertex's end-point ID
+	protected int ID; //vertex's end-point ID
 
 	//constructor
-	public vertexDirected(int pID, int weight) {
-		super(weight);
-		this.childID = pID; 
+	public vertexDirected(int id, int weight, node n1, node n2) {
+		super(weight, n1, n2, true);
+		this.ID = id; 
 		
 	}
 	
 	public int id() {
-		return this.childID;
+		return this.ID;
 	}
 	
 

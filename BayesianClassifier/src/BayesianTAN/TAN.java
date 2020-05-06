@@ -11,15 +11,13 @@ public class TAN {
 	String model; 
 	
 	
-	public TAN(DirGraph B, String model) {
+	public TAN(DirGraphTree B, String model) {
 		
 			
 		
 	}
 	
-	
-	
-	
+
 
 	public void train() {
 		
@@ -28,7 +26,7 @@ public class TAN {
 	
 	
 	
-	protected DirGraph fit(ArrayList<String> T) {
+	protected DirGraphTree fit(ArrayList<String> T) {
 		
 		
 		int n_features = 2; 
@@ -43,7 +41,7 @@ public class TAN {
 		//update weights, using model
 		//compute MST
 		
-		DirGraph B = new DirGraph(n_features);
+		DirGraphTree B = new DirGraphTree(n_features);
 		
 		return B;
 	}
