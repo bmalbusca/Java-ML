@@ -2,19 +2,22 @@ package FileIO;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
+
 
 public class ReadCSV {
 	
 	protected BufferedReader file;
 	protected boolean header = false;   	//detect header NOT USED YET
 	protected int N=-1; 					// dataset size (number of lines) 
-	protected ArrayList<ArrayList<String>> T;
+	
+	protected ArrayList<ArrayList<String>> T; /* MUDAR ISTO PARA UM OBJECTO */
 	
 	public ReadCSV(String filecsv) throws FileNotFoundException {
 		
 		
 		try {
+			
+			
 		
 			file = new BufferedReader(new FileReader(filecsv));
 			String line;
