@@ -5,30 +5,32 @@ package DataStructures;
 public  class vertex {
 
 	private int weight;
-	protected node n1;
-	protected node n2;
+	protected node[] nodes = new node[2]; // [parent, child]
 	protected boolean directed = false;
 	
 	//constructor
 	public vertex(int w, node n1, node n2) {
-		this.weight=w; 
+		this.weight=w;
+		this.nodes[0]=n1;
+		this.nodes[1]=n2;
+		
 	}
 	
 	//overloading 
 	public vertex(int w, node parent, node child, boolean directed) {
 		this.weight=w;
-		this.n1=parent;
-		this.n2=child;
+		this.nodes[0]=parent;
+		this.nodes[1]=child;
 		this.directed = true;
 	}
 	
 	
 	public node parent() {
-		return this.n1;
+		return this.nodes[0];
 	}
 	
 	public node child() {
-		return this.n2;
+		return this.nodes[1];
 	}
 	
 	public void addWeight(int val) {

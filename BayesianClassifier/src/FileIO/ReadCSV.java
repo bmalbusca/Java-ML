@@ -1,7 +1,7 @@
 package FileIO;
 
 import java.io.*;
-import java.util.ArrayList;
+
 
 
 public class ReadCSV implements readFile {
@@ -26,8 +26,8 @@ public class ReadCSV implements readFile {
 			          continue;
 			     }
 				 
-				String[] data = line.split(",");
-				ArrayList<String> row = new ArrayList<String>();
+				String[] data = line.split(","); 		
+				instance row = new instance();
 				
 				for (String cell: data ) {
 					row.add(cell);
@@ -63,7 +63,7 @@ public class ReadCSV implements readFile {
 		
 		if (T != null && this.T.N_size > 0) {
 			for(int i = 0; i< this.T.N_size; ++i) {
-				System.out.println(T.getRow(i));	
+				T.getInstance(i).print();	
 			}
 		}
 		else {
