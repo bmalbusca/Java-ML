@@ -26,6 +26,11 @@ public class Apprun {
 		UndirFullGraph G = new UndirFullGraph(file.data().getInstance(0));
 		G.printGraph();
 		
+		G.updateWeight(G.getEdges().get(7), 5);
+		
+		System.out.println();
+		G.printGraph();
+		System.out.println(G.Nedges());
 
 	
 	}

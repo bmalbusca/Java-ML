@@ -54,6 +54,8 @@ public  class edge {
 	
 	public void addWeight(double val) {
 		this.weight=val;
+		this.nodes[0].sortEdges();
+		this.nodes[1].sortEdges();
 	}
 	
 	public double weight() {

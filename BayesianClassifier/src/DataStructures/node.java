@@ -1,6 +1,12 @@
 package DataStructures;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+
+
+
 
 /** node
  * @provides Node definition - the parameters are only accessed by a method
@@ -8,7 +14,7 @@ import java.util.ArrayList;
  * @author brunocfigueiredo
  */
 
-public class node {
+public class node  {
 	
 	protected int ID;			// node ID
 	protected String label;		// Real name that comes with the CSV file
@@ -23,6 +29,7 @@ public class node {
 	//Here we will use the same index to know each edge from this node are related to others nodes
 	protected ArrayList<node> LinkedNodes = new ArrayList<node>(); //parent nodes or simply the connected nodes to Xi
 	protected ArrayList<edge> edges = new ArrayList<edge>(); //edges seen by this node Xi
+	Map<edge, node> map = new HashMap< edge,node>();
 	
 	//constructor 
 	public node(int id, String label) {
@@ -36,8 +43,14 @@ public class node {
 	
 	public void addEdge(edge e) {
 		edges.add(e);
+		
 	}
 	
+	public void MapNodes(edge e, node n) {
+		//edges.add(e);
+		map.put(e,n);
+		
+	}
 	
 	public ArrayList<node> connNodes(){
 		return LinkedNodes;
@@ -56,6 +69,12 @@ public class node {
 	public String name() {
 		return this.label;
 	}
+
+	
+	public void sortEdges() {
+		Collections.sort(edges,new edgeCompare()); //Sort edge list
+	}
+
 
 	
 }

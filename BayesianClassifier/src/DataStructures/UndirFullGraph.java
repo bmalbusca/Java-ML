@@ -8,13 +8,14 @@ import FileIO.instance;
 public class UndirFullGraph implements graph {
 
 	protected int n;	// number of nodes Xi
+	protected int ne;	// number of edges
 	protected ArrayList<node>  nodes = new ArrayList<node>();  // array of nodes
-	protected ArrayList<edge> edges = new ArrayList<edge>();  	// array of edges - to compute the MST we only need the edges list, adding a root is than easy to build the tree
-	
+	protected ArrayList<edge> edges = new ArrayList<edge>();  	// array of edges 
 	
 	//constructor
 	public UndirFullGraph(instance Xi) {	 
 		int i,j;
+		ne =0;
 		
 		try {
 			this.n= Xi.len()-1; 
@@ -31,7 +32,11 @@ public class UndirFullGraph implements graph {
 			
 			for(j=i; j>0; --j) {
 				
-				edge e = new edge(-1,nodes.get(i),nodes.get(j-1));	
+				edge e = new edge(-1,nodes.get(i),nodes.get(j-1));
+				
+				++ne;
+				e.ID=ne; 
+				
 				connect(nodes.get(i), nodes.get(j-1), e,false);				
 				edges.add(e);
 				
@@ -42,6 +47,9 @@ public class UndirFullGraph implements graph {
 		
 		
 		
+		
+		
+		
 	}
 	
 	
@@ -49,10 +57,12 @@ public class UndirFullGraph implements graph {
 		
 		n1.addNode(n2);		//add node n2 to the connected nodes list of n1
 		n1.edges.add(e);	//add edge e to edge list seen by n1
+		n1.MapNodes(e, n2);
 		
 		if(!directed) {
 			n2.addNode(n1);
 			n2.edges.add(e);
+			n2.MapNodes(e, n1);
 		}
 		else {
 			e.directed=directed; 
@@ -60,16 +70,28 @@ public class UndirFullGraph implements graph {
 	
 	
 	}
-	
+	/*
 	public void printGraph() {
 		for(node X : nodes) {
 			System.out.print(X.name()+ " ID=" + X.ID + " Edges=[");
-			for(node n :  X.connNodes()) {
-				System.out.print("to" + n.name()+", ");
+			for(int i=0; i <  X.connNodes().size(); i++) {	
+				System.out.print("to" + X.connNodes().get(i).name()+"("+X.edges.get(i).weight() +"), ");
 			}
 			System.out.println("]");
 		}
 	}
+	*/
+	
+	public void printGraph() {
+		for(node X : nodes) {
+			System.out.print(X.name()+ " ID=" + X.ID + " Edges=[");
+			for(edge e : X.edges()) {	
+				System.out.print("to" + X.map.get(e).label +"("+e.weight() +"), ");
+			}
+			System.out.println("]");
+		}
+	}
+	
 	
 	
 	/** updateWeight
@@ -85,7 +107,7 @@ public class UndirFullGraph implements graph {
 		if(e.weight() != -1) {	// Alert user from a possible mistake 
 			System.out.println("*Atencion* this vertex was already updated!");
 		}
-		
+		System.out.println("Edge "+ e.ID + " " + e.nodes[0].label + "to" +e.nodes[1].label+  " updated!");
 		e.addWeight(weight);
 		
 		
@@ -121,6 +143,17 @@ public class UndirFullGraph implements graph {
 	
 	
 	
+	public ArrayList<edge> getEdges(){
+		return edges;
+	}
 	
 	
+	public int Nedges() {
+		
+		return this.ne;
+	}
+
+	public int Nnodes() {
+		return this.n;
+	}
 }
