@@ -14,7 +14,7 @@ import java.util.Map;
  * @author brunocfigueiredo
  */
 
-public class node  {
+public class node implements  Cloneable {
 	
 	protected int ID;			// node ID
 	protected String label;		// Real name that comes with the CSV file
@@ -32,15 +32,15 @@ public class node  {
 	Map<edge, node> map = new HashMap< edge,node>();
 	
 	//constructor 
-	public node(int id, String label) {
+	public node(int id, String label) { //TO-DO check if id and label exists
 		this.ID=id;
 		this.label = label;
 	}
-	
+	/*
 	public void addNode(node n) {
 		LinkedNodes.add(n);
 	}
-	
+	*/
 	public void addEdge(edge e) {
 		edges.add(e);
 		
@@ -51,11 +51,11 @@ public class node  {
 		map.put(e,n);
 		
 	}
-	
+	/*
 	public ArrayList<node> connNodes(){
 		return LinkedNodes;
 	}
-	
+	*/
 	
 	public ArrayList<edge> edges(){
 		return edges; 
@@ -76,6 +76,14 @@ public class node  {
 	}
 
 
+	
+	@Override
+	protected node clone() throws CloneNotSupportedException {
+
+	    return (node) super.clone();
+	}
+	
+	
 	
 }
 

@@ -1,7 +1,9 @@
 package DataStructures;
 
 
-import java.util.ArrayList; 
+import java.util.ArrayList;
+//import java.util.Collections;
+
 import FileIO.instance;
 
 
@@ -53,14 +55,27 @@ public class UndirFullGraph implements graph {
 	}
 	
 	
+	public ArrayList<node> MSTnodes(){
+		
+		
+		ArrayList<node> NotVisited ; //Not visited nodes
+		NotVisited  = cloneListNodes();
+		
+
+		
+		return NotVisited; 
+		
+	}
+	
+	
 	public void connect(node n1, node n2, edge e, boolean directed) {
 		
-		n1.addNode(n2);		//add node n2 to the connected nodes list of n1
+		//n1.addNode(n2);		//add node n2 to the connected nodes list of n1
 		n1.edges.add(e);	//add edge e to edge list seen by n1
 		n1.MapNodes(e, n2);
 		
 		if(!directed) {
-			n2.addNode(n1);
+			//n2.addNode(n1);
 			n2.edges.add(e);
 			n2.MapNodes(e, n1);
 		}
@@ -70,17 +85,7 @@ public class UndirFullGraph implements graph {
 	
 	
 	}
-	/*
-	public void printGraph() {
-		for(node X : nodes) {
-			System.out.print(X.name()+ " ID=" + X.ID + " Edges=[");
-			for(int i=0; i <  X.connNodes().size(); i++) {	
-				System.out.print("to" + X.connNodes().get(i).name()+"("+X.edges.get(i).weight() +"), ");
-			}
-			System.out.println("]");
-		}
-	}
-	*/
+
 	
 	public void printGraph() {
 		for(node X : nodes) {
@@ -146,6 +151,58 @@ public class UndirFullGraph implements graph {
 	public ArrayList<edge> getEdges(){
 		return edges;
 	}
+	
+	
+	public ArrayList<node> getNodes(){
+		return nodes;
+	}
+	
+	
+
+	
+	
+	
+	protected ArrayList<node> cloneListNodes(){
+		
+		ArrayList<node> clone = new ArrayList<node>();		
+		node copy;
+		
+		for (int i = 0; i < this.n ; ++i) {
+			try {
+				
+				copy = (node) (nodes.get(i)).clone();
+				clone.add(copy);
+			
+			} catch (CloneNotSupportedException e) {
+				
+				e.printStackTrace();
+			}
+		}			
+		return clone;	
+	}
+	
+	
+	
+protected ArrayList<edge> cloneListEdges(){
+		
+		ArrayList<edge> clone = new ArrayList<edge>();
+		
+		edge copy;
+		
+		
+		for (int i = 0; i < this.ne ; ++i) {
+			
+			
+			
+			
+			
+		}
+	
+		
+		return clone;
+		
+	}
+	
 	
 	
 	public int Nedges() {
