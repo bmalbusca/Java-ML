@@ -3,8 +3,11 @@ package DataStructures;
 
 public  interface graph {
 	
-	public void initG(int n_nodes);
-	public void printG();
+
+	public void printGraph() ;
+	public void connect(node n1, node n2, edge e, boolean directed);
+	public void addNewNode( node n);
+	public void addNewEdge( edge e);
 	
 
 

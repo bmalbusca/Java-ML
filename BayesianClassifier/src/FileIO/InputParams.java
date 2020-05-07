@@ -3,7 +3,7 @@ package FileIO;
 import java.io.File;
 import java.util.Arrays;
 
-public class ParseInput {
+public class InputParams {
 
 	
 	
@@ -16,7 +16,7 @@ public class ParseInput {
 	
 	
 	
-	public ParseInput(String[] args) {
+	public InputParams(String[] args) {
 		 
 		if(args.length < 3) {
 			

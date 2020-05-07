@@ -29,11 +29,7 @@ public class ReadCSV implements readFile {
 				String[] data = line.split(","); 		
 				instance row = new instance();
 				
-				for (String cell: data ) {
-					row.add(cell);
-				}
-				
-				
+				row.addAll(data);
 				T.add(row);
 				++T.N_size;
 
@@ -74,6 +70,10 @@ public class ReadCSV implements readFile {
 	
 	public dataset data(){
 		return T;
+	}
+	
+	public instance get(int row_id) {
+		return T.getInstance( row_id );
 	}
 	
 	
