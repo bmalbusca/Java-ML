@@ -1,3 +1,17 @@
+# Project Status
+  
+### O que falta fazer neste momento -  Project progress: %45
+ 
+ *  Falta verificar antes de inserir um novo no, se este ja existe
+ *  O mesmo aplica-se para os edges
+ *  Falta Fazer as contagens e fazer update dos pesos - Implementar LL e MDL
+ *  Falta tornar UndirFullgraph.MST() mais eficiente - O algoritmo testa sempre todas edges existentes apartir de  um no mesmo quando ja faz parte da MST Tree 
+ *  Falta fazer os passos 4 e 5 da Structure Learning (pag 3)
+ *  Falta implemntar o predict - Parameter learning (pag 3 - slack Q&A)
+ *  Falta implementar metrics F1.score, accuracy, AvgAccuracy
+
+
+
 # Theory Intro 
 
 
@@ -9,11 +23,11 @@ C - random const.
 
 
 ##### Dataset T - training* 
-```
-X1 X2 X3    ...  XX C
-1  2   3          0 0
-1  0   0		  0	0 
-3  0   0          0 0
+```c
+X1 X2 X3    ...  XX  C
+1  2   3          0  0
+1  0   0		  0	 0 
+3  0   0          0  0
 ```
 
 
@@ -30,11 +44,11 @@ X1 X2 X3    ...  XX C
 
 
 
-* ***Theta*** = { P(Xi=$$x_{ik}$$ |{Parents}), .. , ($$theta_{ijkc}$$) }
+* ***Theta*** = { P(Xi=x_{ik} |{Parents}), .. , (theta_{ijkc}) }
 
 for each i, or X1,.., Xn:
-**$$theta_{ijkc}$$** = ($$N_ijkc$$ + N') / ($$Nijc^K$$} + ri \* N') 
-**$$theta_{c}$$** = (Nc + N')/ (N + ri \* N') 
+**theta_{ijkc}** = (N_ijkc + N') / (Nijc^K} + ri \* N') 
+**theta_{c}** = (Nc + N')/ (N + ri \* N') 
 
 > N' = 0.5
 >
@@ -44,9 +58,9 @@ for each i, or X1,.., Xn:
 >
 > Nijkc - # valores possiveis para a config i=i',j=j',k=k' e c=z
 >
-> $${Nijc^{k}}$$ - # valores possiveis que o parent de $$N_{ijkc}$$ pode ter
+> {Nijc^{k}} - # valores possiveis que o parent de N_{ijkc} pode ter
 >
-> $$\Pi_{X_{i}}$$ - conjunto de possiveis parents de  Xi em G, excluindo C
+> \Pi_{X_{i}} - conjunto de possiveis parents de  Xi em G, excluindo C
 
 
 ```
@@ -67,7 +81,7 @@ Y' = object.predict(X)
 score = metric.f1()
 evaluation = score(Y_benchmark, Y' )
 ```
-## BNC  to TAN - It's a good approximation!
+# BNC  to TAN - It's a good approximation!
 
 
 >   ***Definitions:***
@@ -82,33 +96,19 @@ evaluation = score(Y_benchmark, Y' )
 - **`TAN.train(Y_train,X_train)`** 
     1.  read T and convert it into Graph G (using LL or MDL)  
     2.  use PRIM or Kruskal to find/create MWST from G   
-    3.  Choose a root from MWST and add the node C
+    3.  Choose a root from MWST and add directions
+    4.  Based on weights already calculated with  LL (or MDL) and graph directions, compute the thetas 
 
 - **`Y_predicted = TAN.predict(X_test)`**
+    1. With the thetas parameters already calculate, apply the probability formula that existis at Slack Q&A
 
 - **`Score.f1(Y_predicted, Y_test)`**
+    1. implement the requested project metrics 
 
 
-## Code Diagram 
+# Code Diagram 
 
-```
-|Packet1 - Nodes |
-|  +  Node       | ----> import | Pack2 - Data Structure        | 
-                                |  + MWST                       |
-                                |  + Graph                      |
-                    
-    (Pack2 )---->import | Pack3 - TAN              |                
-                        |   + TAN_T                |----------->| Pack5 - App |
-                        |   + Probability          |            |  + BNC      |
-                                                                |             |   ---> | Pack6 - GUI            | 
-                        |Pack4 - score      |                   |             |        |  # Run                 |    
-                        |+ scorefunction    | ----------------->|             |        |                        |
-                                                                                       |                        |
-                                                | Pack7 - File management | import --->|                        |
-                                                |  +read                  |                             
-                                                |  +print                 |                          
-
-```
+![Packages Diagram](UML-POO1920-Packages.png)
 
 
 

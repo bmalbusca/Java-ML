@@ -19,7 +19,7 @@ public class node implements  Cloneable {
 	protected int ID;			// node ID
 	protected String label;		// Real name that comes with the CSV file
 	
-	protected int visited=0;
+	
 	//Useful data to calculate the weigths
 	public int ri;			// N values that xi can take
 	public int Njkc[][][];	// Nijkc counts

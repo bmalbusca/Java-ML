@@ -1,7 +1,8 @@
 package BayesianTAN;
-import java.util.ArrayList;
+
 
 import DataStructures.*;
+import FileIO.instance;
 
 
 
@@ -10,10 +11,33 @@ public class TAN {
 	//info
 	String model; 
 	
-	/*
-	public TAN(DirGraphTree B, String model) {
+	
+	public TAN(instance FeaturesNames, String model) {
 		
-			
+		
+		this.model= model;
+		UndirFullGraph G = new UndirFullGraph(FeaturesNames);
+	
+		
+		/* for bias-train.csv - small train set
+		G.updateWeight(G.getEdges().get(2), 2);
+		G.updateWeight(G.getEdges().get(1), 5);
+		G.updateWeight(G.getEdges().get(0), 3);
+		G.updateWeight(G.getEdges().get(3), 1);
+		G.updateWeight(G.getEdges().get(4), 1);
+	
+		*/
+		System.out.println();
+		G.printGraph();
+		
+		Tree T =  G.MST();
+		T.printGraph();
+		T.printNodes();
+		
+		
+		
+		
+		
 		
 	}
 	
@@ -21,37 +45,19 @@ public class TAN {
 
 	public void train() {
 		
-		
+		System.out.println("Not yet!");
 	}
 	
 	
 	
-	protected DirGraphTree fit(ArrayList<String> T) {
-		
-		
-		int n_features = 2; 
-		
-		//part 1
-		//calculate N values 
-		//update info features
-		
-		
-		//part 2
-		//build graph
-		//update weights, using model
-		//compute MST
-		
-		DirGraphTree B = new DirGraphTree(n_features);
-		
-		return B;
-	}
+	
 	
 	
 	public void predict() {
-		
+		System.out.println("Not yet!");
 		
 	}
-	*/
+	
 	
 	
 }
