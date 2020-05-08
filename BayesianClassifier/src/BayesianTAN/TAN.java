@@ -10,7 +10,7 @@ public class TAN {
 	//info
 	String model; 
 	
-	
+	/*
 	public TAN(DirGraphTree B, String model) {
 		
 			
@@ -51,6 +51,7 @@ public class TAN {
 		
 		
 	}
+	*/
 	
 	
 }

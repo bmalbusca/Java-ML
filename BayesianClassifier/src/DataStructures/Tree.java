@@ -38,11 +38,18 @@ public class Tree extends graph{
 
 	
 	public void printGraph() {
-		for(node X : nodes) {
-			System.out.print(X.name()+ " ID=" + X.ID+ "]" );
+		for(edge e : edges) {
+			System.out.println(e.nodes[0].name()+"-"+e.nodes[1].name());
 		}
 	}
 	
+	public void printNodes() {
+		System.out.print("Nodes [");
+		for(node X : nodes) {
+			System.out.print(" "+X.name() );
+		}
+		System.out.println(" ]");
+	}
 	
 	
 	/** updateWeight
@@ -106,11 +113,11 @@ public class Tree extends graph{
 	
 	
 	public void printEdges() {
-		System.out.print("[");
+		System.out.print("Edges [");
 		for(edge e: edges) {
 			System.out.print(" "+e.nodes[0].label+"-"+e.nodes[1].label);
 		}
-		System.out.println("]");
+		System.out.println(" ]");
 	}
 
 	public boolean contains(node n) {

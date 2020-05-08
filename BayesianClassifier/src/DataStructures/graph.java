@@ -12,11 +12,13 @@ public  abstract class graph {
 	
 	
 	abstract public void printGraph();
+	abstract public void printNodes();
 	abstract public void connect(node n1, node n2, edge e);
 	abstract public void addNewNode( node n);
 	abstract public void addNewEdge( edge e);
 	abstract public int Nnodes();
 	abstract public int Nedges();
+	
 	
 
 
