@@ -18,7 +18,7 @@
 ### Input 
 X = ( X1, X2, ... ,Xn, C)
 
-X1 = {a, ...,z} -> {x1, ..., x_{1(ri)} }  , ri = length 
+X1 = {a, ...,z} -> {x1, ..., x_{1(ri)} }  , ri = length ;
 C - random const. 
 
 
@@ -94,16 +94,16 @@ evaluation = score(Y_benchmark, Y' )
 *TAN learning w/ Train data (only 1x) ----> TAN predict w/ Test data (many times as you want) ----> TAN score (measure the results)* 
 
 - **`TAN.train(Y_train,X_train)`** 
-    1.  read T and convert it into Graph G (using LL or MDL)  
-    2.  use PRIM or Kruskal to find/create MWST from G   
+    1.  Read T and convert it into Graph G (using LL or MDL)  
+    2.  Use PRIM or Kruskal to find/create MWST from G   
     3.  Choose a root from MWST and add directions
     4.  Based on weights already calculated with  LL (or MDL) and graph directions, compute the thetas 
 
 - **`Y_predicted = TAN.predict(X_test)`**
-    1. With the thetas parameters already calculate, apply the probability formula that existis at Slack Q&A
+    1. With the (thetas) parameters already calculated, apply the probabilities formula that exists at Slack Q&A
 
 - **`Score.f1(Y_predicted, Y_test)`**
-    1. implement the requested project metrics 
+    1. Implement the requested project metrics 
 
 
 # Code Diagram 

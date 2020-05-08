@@ -16,8 +16,8 @@ public class ReadCSV implements readFile {
 				
 		
 			file = new BufferedReader(new FileReader(filecsv));
-			String line;
-			T = new dataset();
+			String line;			//to read each line
+			T = new dataset();		//to Save all instances
 			T.N_size=-1; 			//empty
 		
 			while ((line = file.readLine()) != null) {

@@ -22,10 +22,10 @@ public class node implements  Cloneable {
 	
 	//Useful data to calculate the weigths
 	public int ri;			// N values that xi can take
-	public int Njkc[][][];	// Nijkc counts
-	public int NKjc[][][];  // sum(Nijkc, k={1,..,ri}) - Number of instances where the possible parents take their j-th and C class takes c-th value
-	public int NJkc[][][];	// sum(Nijkc, j={1,..,qi}) - Number of instances where Xi takes its k-th value xik and C class takes c-th value
-	
+	public double Njkc[][][];	// Nijkc counts
+	public double NKjc[][][];  // sum(Nijkc, k={1,..,ri}) - Number of instances where the possible parents take their j-th and C class takes c-th value
+	public double NJkc[][][];	// sum(Nijkc, j={1,..,qi}) - Number of instances where Xi takes its k-th value xik and C class takes c-th value
+	public double theta[][][];
 	
 	protected ArrayList<node> LinkedNodes = new ArrayList<node>();  //parent nodes or simply the connected nodes to Xi
 	protected ArrayList<edge> edges = new ArrayList<edge>(); 		//edges seen by this node Xi

@@ -6,7 +6,7 @@ public  class edge {
 
 	private double weight;
 	protected int ID;
-	protected node[] nodes = new node[2]; // [parent, child] in a directed graph
+	protected node[] nodes = new node[2]; 
 	protected boolean directed = false;
 	
 	//constructor

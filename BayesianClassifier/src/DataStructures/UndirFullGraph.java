@@ -1,7 +1,6 @@
 package DataStructures;
 
 import java.util.ArrayList;
-//import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -155,7 +154,7 @@ public class UndirFullGraph extends graph {
 		return clone;
 	}
 
-	public Tree MST() {
+	public Tree MST() {		// Prim
 
 		Tree T = new Tree(); // Create the structure for the MST
 		ArrayList<node> TreeNodes; // Receive the nodes that make part of MST
@@ -166,14 +165,14 @@ public class UndirFullGraph extends graph {
 
 		T.addNewNode(nodes.get(0)); // pick the first node
 
-		do {
+		do { 
 
 			TreeNodes = T.getNodes();
 
 			for (node nFrom : TreeNodes) {
 				for (i = 0; i < nFrom.edges.size(); i++) {
 					e = nFrom.edges.get(i);
-					if (!T.contains(nFrom.map.get(e))) {
+					if (!T.contains(nFrom.map.get(e))) {	//{ key:value  }; key=edge value=no
 						candidateE.put(e, nFrom);
 						break;
 					}
@@ -187,7 +186,7 @@ public class UndirFullGraph extends graph {
 					eMax = ec;
 				}
 			}
-
+			
 			T.addNewEdge(eMax);
 			T.addNewNode(candidateE.get(eMax).map.get(eMax)); // FromNode in this edge find ToNode
 			candidateE.clear();
