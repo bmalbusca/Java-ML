@@ -102,6 +102,24 @@ evaluation = score(Y_benchmark, Y' )
 - **`Y_predicted = TAN.predict(X_test)`**
     1. With the (thetas) parameters already calculated, apply the probabilities formula that exists at Slack Q&A
 
+
+```
+Question: How do I classify a novel instance X_1=1 X_2=2 X_3=1?
+
+Answer: 
+Start noticing that the BN structure in the project description example factorizes the joint probability in the following way: P(X_1,X_2,X_3,C)=P(C)P(X_1|C)P(X_2|X_1,C)P(X_3|X_2,C).
+What we want is to choose C=0 or C=1 that yields the greatest
+P(C=?|X_1=1,X_2=2 X_3=1).
+Without loss of generality, let's compute only P(C=0|X_1=1,X_2=2 X_3=1):
+
+P(C=0|X_1=1,X_2=2,X_3=1) 
+=\frac{P(X_1=1,X_2=2,X_3=1,C=0)}{P(X_1=1,X_2=2,X_3=1,C=0)+P(X_1=1,X_2=2,X_3=1,C=1)} //see project page 2
+=\frac{P(C=0)P(X_1=1|C=0)P(X_2=2|X_1=1,C=0)P(X_3=1|X_2=2,C=0)}
+{P(C=0)P(X_1=1|C=0)P(X_2=2|X_1=1,C=0)P(X_3=1|X_2=2,C=0)+P(C=1)P(X_1=1|C=1)P(X_2=2|X_1=1,C=1)P(X_3=1|X_2=2,C=1)}
+=\frac{\tetha_1\tetha_1121\tetha_2231\tetha_3321}{\tetha_1\tetha_1121\tetha_2231\tetha_3321+\tetha_2\tetha_1122\tetha_2232\tetha_3322}
+
+```
+
 - **`Score.f1(Y_predicted, Y_test)`**
     1. Implement the requested project metrics 
 
