@@ -10,7 +10,7 @@ public  class edge {
 	protected boolean directed = false;
 	
 	//constructor
-	public edge(int w, node n1, node n2) {
+	public edge(double w, node n1, node n2) {
 		this.weight=w;
 		this.nodes[0]=n1;
 		this.nodes[1]=n2;
@@ -21,7 +21,7 @@ public  class edge {
 	
 	
 	//overloading 
-	public edge(int w, node parent, node child, boolean directed) {
+	public edge(double w, node parent, node child, boolean directed) {
 		this.weight=w;
 		this.nodes[0]=parent;
 		this.nodes[1]=child;
@@ -38,7 +38,7 @@ public  class edge {
 	
 	public node to() {
 		if(!this.directed) {
-			System.out.println("*Alert* This graph is not directed");
+			//System.out.println("*Alert* This graph is not directed");
 		}
 		return this.nodes[1];
 	}
@@ -62,7 +62,11 @@ public  class edge {
 		return this.weight;
 	}
 	
-	
+	public edge clone() {
+		
+		edge new_edge = new edge(this.weight,this.nodes[0],this.nodes[1]);
+		return new_edge;
+	}
 	
 	
 }

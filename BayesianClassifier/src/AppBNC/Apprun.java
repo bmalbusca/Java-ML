@@ -1,11 +1,7 @@
 package AppBNC;
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-
-import DataStructures.UndirFullGraph;
-import DataStructures.edge;
-import DataStructures.node;
+import DataStructures.*;
 import FileIO.*;
 
 
@@ -29,13 +25,14 @@ public class Apprun {
 		UndirFullGraph G = new UndirFullGraph(file.data().getInstance(0));
 		G.printGraph();
 		
-		//G.updateWeight(G.getEdges().get(7), 5);
+		G.updateWeight(G.getEdges().get(7), 5);
 		
 		System.out.println();
 		G.printGraph();
-		ArrayList<node> T =  G.MSTnodes();
+		Tree T =  G.MST();
+		T.printEdges();
 		
-		for(node n : T) {
+	/*	for(node n : T) {
 			System.out.print(n.name()+" ");
 		}
 		System.out.println();
@@ -51,7 +48,7 @@ public class Apprun {
 		for(node n : G.getNodes()) {
 			System.out.print(n.name()+" ");
 		}
-		
+	*/	
 	
 	}
 
