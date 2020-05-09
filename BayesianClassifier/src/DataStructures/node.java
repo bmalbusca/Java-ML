@@ -27,7 +27,7 @@ public class node implements  Cloneable {
 	public double NJkc[][][];	// sum(Nijkc, j={1,..,qi}) - Number of instances where Xi takes its k-th value xik and C class takes c-th value
 	public double theta[][][];
 	
-	protected ArrayList<node> LinkedNodes = new ArrayList<node>();  //parent nodes or simply the connected nodes to Xi
+	//protected ArrayList<node> LinkedNodes = new ArrayList<node>();  //parent nodes or simply the connected nodes to Xi
 	protected ArrayList<edge> edges = new ArrayList<edge>(); 		//edges seen by this node Xi
 	Map<edge, node> map = new HashMap< edge,node>();				//Fast search for nodes-edge pairs
 	
@@ -46,6 +46,12 @@ public class node implements  Cloneable {
 		addEdge(e);
 		map.put(e,n);
 		
+	}
+	
+	public node getParent(edge e) {
+		node parent = this.map.get(e);
+		
+		return parent; 
 	}
 
 	
@@ -75,6 +81,7 @@ public class node implements  Cloneable {
 	    return (node) super.clone();
 	}
 	
+
 	
 	
 }

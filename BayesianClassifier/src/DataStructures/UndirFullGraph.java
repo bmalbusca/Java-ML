@@ -7,10 +7,12 @@ import java.util.Map;
 import FileIO.instance;
 
 public class UndirFullGraph extends graph {
-
+	
 	ArrayList<node> nodes = super.nodes;// array of nodes
 	ArrayList<edge> edges = super.edges;// array of edges
-
+	//protected  node C = new node();  // can be a way to get easy access to C nodes 
+	
+	
 	// constructor
 	public UndirFullGraph(instance Xi) {
 
@@ -170,7 +172,7 @@ public class UndirFullGraph extends graph {
 			TreeNodes = T.getNodes();
 
 			for (node nFrom : TreeNodes) {
-				for (i = 0; i < nFrom.edges.size(); i++) {
+				for (i = 0; i < nFrom.edges.size(); i++) {		//passar isto para for( : )
 					e = nFrom.edges.get(i);
 					if (!T.contains(nFrom.map.get(e))) {	//{ key:value  }; key=edge value=no
 						candidateE.put(e, nFrom);

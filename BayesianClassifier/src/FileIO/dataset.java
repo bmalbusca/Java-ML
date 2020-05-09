@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class dataset {
 	
 	public int N_size = -1;		// data set size or number of rows starts as empty  
+	public int N_classes=0; 	/* need to be updated */ 
 	public ArrayList<instance> T = new	ArrayList<instance>();
 	
 	public void add(instance row){

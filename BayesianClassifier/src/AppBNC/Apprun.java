@@ -29,7 +29,8 @@ public class Apprun {
 		file.print();
 		
 		
-		TAN bncModel = new TAN(file.data().getInstance(0), param.score);	// TAN(Features array, Score Model)
+		
+		TAN bncModel = new TAN(file.data(), param.score);	// TAN(Features array, Score Model)
 		
 		bncModel.train();	//not implemented
 		bncModel.predict();	//not implemented

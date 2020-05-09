@@ -7,6 +7,9 @@ public  abstract class graph {
 
 	protected int n;	// number of nodes Xi
 	protected int ne;	// number of edges
+	
+	protected int s; 	//number of possible C values 
+	protected int N; 	//number of instances 
 	protected ArrayList<node>  nodes = new ArrayList<node>();  // array of nodes
 	protected ArrayList<edge> edges = new ArrayList<edge>();  	// array of edges 
 	

@@ -10,7 +10,26 @@
  *  Falta implemntar o predict - Parameter learning (pag 3 - slack Q&A)
  *  Falta implementar metrics F1.score, accuracy, AvgAccuracy
 
+### Report
 
+```
+Question: Is there a general guideline for the project report?
+Answer: A minimum structure would be:
+1-Introduction
+
+2-Extensibility of the solution
+discuss here places of extensibility of your code, problems found, possible improvements, ...
+
+3-Critical performance analysis
+discuss here time / space performance issues, constraints, possible improvements, data structures complexities, ...
+
+4-Extra features
+description of functionalities beyond the requested ones
+
+5-Conclusions
+In the front cover please include: name of the course, academic year, project name, number and name of students and number of the project group.
+Please do not describe the UML, I have the UML inside the .zip file that you will submit in the fenix.
+```
 
 # Theory Intro 
 
