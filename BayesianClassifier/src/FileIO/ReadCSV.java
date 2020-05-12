@@ -22,8 +22,7 @@ public class ReadCSV implements readFile {
 			T.N_size=-1; 			//empty
 			T.N_classes=0;
 			int length = 0;
-			ArrayList<String> C_aux = new ArrayList<String>();		//all possible values of c
-			ArrayList<Integer> ri_val = new ArrayList<Integer>();		//contains ri value of each xi					
+			ArrayList<String> C_aux = new ArrayList<String>();		//all possible values of c					
 			ArrayList<ArrayList<String>> ri_aux_list = new ArrayList<ArrayList<String>>();	//arraylist of all possible value of xi
 		
 			while ((line = file.readLine()) != null) {
@@ -42,14 +41,14 @@ public class ReadCSV implements readFile {
 				    for(int i = 0; i < length -1 ;i++) {
 				    	ArrayList<String> ri_aux = new ArrayList<String>();
 				    	ri_aux_list.add(ri_aux);
-				    	ri_val.add(0);
+				    	T.ri_val.add(0);
 				    }
 				}else {
 					for(int i = 0; i < length -1 ;i++) {
 						if(!ri_aux_list.get(i).contains(row.get(i))) {
 							ri_aux_list.get(i).add(row.get(i));
-							int k = ri_val.get(i);
-							ri_val.set(i, k+1);  // FALTA METER NO NODE
+							int k = T.ri_val.get(i);
+							T.ri_val.set(i, k+1);  // FALTA METER NO NODE
 						}
 				    }
 					String ci = row.get(length-1);
@@ -62,9 +61,9 @@ public class ReadCSV implements readFile {
 				++T.N_size;
 
 			}
-			System.out.print("Teste ri + N_classes: ");
+			System.out.print("readCSV   -   Teste ri + N_classes: ");
 			for(int i = 0; i < length -1 ;i++) {
-				System.out.print(ri_val.get(i) + " ");
+				System.out.print(T.ri_val.get(i) + " ");
 			}
 			System.out.print(T.N_classes + " ");
 			System.out.println("");
@@ -107,6 +106,21 @@ public class ReadCSV implements readFile {
 	public instance get(int row_id) {
 		return T.getInstance( row_id );
 	}
+	
+	public static void Nc_count(dataset d){
+		// Initialize Npjkc
+		d.Nc = new int[d.N_classes];
+		// Count
+		for(int i =0; i<d.N_size; i++) {
+			instance inst = d.getInstance(i+1); // First is atributes names
+			int ci = Integer.parseInt(inst.get(d.ri_val.size()));
+			for(int c=0; c<d.N_classes; c++)
+				if(ci==c)
+					d.Nc[c]++;	
+		}
+	}
+	
+	
 	
 /*	public void update_N_classes() {
 		int length = T.getInstance(0).len();	//lenght of instance

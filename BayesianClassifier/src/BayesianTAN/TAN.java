@@ -24,7 +24,7 @@ public class TAN {
 		instance FeaturesNames = Data.getInstance(0);
 		UndirFullGraph G = new UndirFullGraph(FeaturesNames);
 	
-		
+		update_counts(Data, G);
 		//for bias-train.csv - small train set
 		//G.updateWeight(G.getEdges().get(2), 2);
 		//G.updateWeight(G.getEdges().get(1), 5);
@@ -44,14 +44,13 @@ public class TAN {
 		
 		
 		
-		
-		
-		
-		
-		
-		
-		
 	}
+	
+	public void update_counts(dataset d, UndirFullGraph G) {
+			for(int i=0; i<d.ri_val.size(); i++)
+				node.node_counts(d, G.getNodes().get(i));
+			ReadCSV.Nc_count(d);			
+		}
 	
 	
 	public void computeAlpha(node child) {
