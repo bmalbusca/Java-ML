@@ -5,7 +5,7 @@ import java.util.Collections;
 
 
 
-public class instance {
+public class Instance {
 
 	public ArrayList<String> row = new ArrayList<String>();
 	

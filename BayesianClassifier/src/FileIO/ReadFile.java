@@ -2,10 +2,10 @@ package FileIO;
 
 import java.io.FileNotFoundException;
 
-public interface readFile {
+public interface ReadFile {
 	
 	void print();
-	dataset data();
+	Dataset data();
 	void close() throws FileNotFoundException;
 	
 	

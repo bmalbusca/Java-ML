@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import FileIO.instance;
+import FileIO.Instance;
 
-public class UndirFullGraph extends graph {
+public class UndirFullGraph extends Graph {
 	
-	ArrayList<node> nodes = super.nodes;// array of nodes
-	ArrayList<edge> edges = super.edges;// array of edges
+	ArrayList<Node> nodes = super.nodes;// array of nodes
+	public ArrayList<Edge> edges = super.edges;// array of edges
 	//protected  node C = new node();  // can be a way to get easy access to C nodes 
 	
 	
 	// constructor
-	public UndirFullGraph(instance Xi) {
+	public UndirFullGraph(Instance Xi) {
 
 		super.ne = 0;
 
@@ -31,15 +31,15 @@ public class UndirFullGraph extends graph {
 
 	}
 
-	private void InitNodes(instance Xi) {
+	private void InitNodes(Instance Xi) {
 
 		for (int i = 0; i < super.n; ++i) {
-			node x = new node(i, Xi.get(i));
+			Node x = new Node(i, Xi.get(i));
 			nodes.add(x);
 
 			for (int j = i; j > 0; --j) {
 
-				edge e = new edge(-1, nodes.get(i), nodes.get(j - 1));
+				Edge e = new Edge(-1, nodes.get(i), nodes.get(j - 1));
 
 				++super.ne;
 				e.ID = ne;
@@ -51,7 +51,7 @@ public class UndirFullGraph extends graph {
 		}
 	}
 
-	public void connect(node n1, node n2, edge e) {
+	public void connect(Node n1, Node n2, Edge e) {
 
 		// add node n2 to the connected nodes list of n1
 		// add edge e to edge list seen by n1
@@ -65,9 +65,9 @@ public class UndirFullGraph extends graph {
 	}
 
 	public void printGraph() {
-		for (node X : nodes) {
+		for (Node X : nodes) {
 			System.out.print(X.name() + " ID=" + X.ID + " Edges=[");
-			for (edge e : X.edges()) {
+			for (Edge e : X.edges()) {
 				System.out.print("to" + X.map.get(e).label + "(" + e.weight() + "), ");
 			}
 			System.out.println("]");
@@ -76,7 +76,7 @@ public class UndirFullGraph extends graph {
 
 	public void printNodes() {
 		System.out.print("Nodes [");
-		for (node X : nodes) {
+		for (Node X : nodes) {
 			System.out.print(" " + X.name());
 		}
 		System.out.println("]");
@@ -86,15 +86,15 @@ public class UndirFullGraph extends graph {
 	 * updateWeight
 	 * 
 	 * @category method
-	 * @provides updates vertex's weight
+	 * @provides updates edge's weight
 	 * @return None
 	 * @author brunocfigueiredo
 	 */
 
-	public void updateWeight(edge e, double weight) {
+	public void updateWeight(Edge e, double weight) {
 
 		if (e.weight() != -1) { // Alert user from a possible mistake
-			System.out.println("*Atencion* this vertex was already updated!");
+			System.out.println("*Atencion* this edge was already updated!");
 		}
 		System.out.println("Edge " + e.ID + " " + e.nodes[0].label + "to" + e.nodes[1].label + " updated!");
 		e.addWeight(weight);
@@ -110,7 +110,7 @@ public class UndirFullGraph extends graph {
 	 * @author brunocfigueiredo
 	 */
 
-	public void addNewNode(node n) {
+	public void addNewNode(Node n) {
 		this.nodes.add(n);
 
 	}
@@ -124,28 +124,28 @@ public class UndirFullGraph extends graph {
 	 * @author brunocfigueiredo
 	 */
 
-	public void addNewEdge(edge e) {
+	public void addNewEdge(Edge e) {
 		this.edges.add(e);
 
 	}
 
-	public ArrayList<edge> getEdges() {
+	public ArrayList<Edge> getEdges() {
 		return edges;
 	}
 
-	public ArrayList<node> getNodes() {
+	public ArrayList<Node> getNodes() {
 		return nodes;
 	}
 
-	protected ArrayList<node> cloneListNodes() {
+	protected ArrayList<Node> cloneListNodes() {
 
-		ArrayList<node> clone = new ArrayList<node>();
-		node copy;
+		ArrayList<Node> clone = new ArrayList<Node>();
+		Node copy;
 
 		for (int i = 0; i < this.n; ++i) {
 			try {
 
-				copy = (node) (nodes.get(i)).clone();
+				copy = (Node) (nodes.get(i)).clone();
 				clone.add(copy);
 
 			} catch (CloneNotSupportedException e) {
@@ -159,11 +159,11 @@ public class UndirFullGraph extends graph {
 	public Tree MST() {		// Prim
 
 		Tree T = new Tree(); // Create the structure for the MST
-		ArrayList<node> TreeNodes; // Receive the nodes that make part of MST
-		Map<edge, node> candidateE = new HashMap<edge, node>(); // to save the higher value candidate edges
+		ArrayList<Node> TreeNodes; // Receive the nodes that make part of MST
+		Map<Edge, Node> candidateE = new HashMap<Edge, Node>(); // to save the higher value candidate edges
 
 		int i;
-		edge e, eMax;
+		Edge e, eMax;
 
 		T.addNewNode(nodes.get(0)); // pick the first node
 
@@ -171,7 +171,7 @@ public class UndirFullGraph extends graph {
 
 			TreeNodes = T.getNodes();
 
-			for (node nFrom : TreeNodes) {
+			for (Node nFrom : TreeNodes) {
 				for (i = 0; i < nFrom.edges.size(); i++) {		//passar isto para for( : )
 					e = nFrom.edges.get(i);
 					if (!T.contains(nFrom.map.get(e))) {	//{ key:value  }; key=edge value=no
@@ -183,7 +183,7 @@ public class UndirFullGraph extends graph {
 
 			eMax = candidateE.keySet().iterator().next(); // lets pick a reference
 
-			for (edge ec : candidateE.keySet()) {
+			for (Edge ec : candidateE.keySet()) {
 				if (eMax.weight() < ec.weight()) {
 					eMax = ec;
 				}

@@ -5,10 +5,10 @@ import java.util.ArrayList;
 
 
 
-public class ReadCSV implements readFile {
+public class ReadCSV implements ReadFile {
 	
 	protected BufferedReader file;
-	protected dataset T; 
+	protected Dataset T; 
 	
 	public ReadCSV(String filecsv) throws FileNotFoundException {
 		
@@ -18,7 +18,7 @@ public class ReadCSV implements readFile {
 		
 			file = new BufferedReader(new FileReader(filecsv));
 			String line;			//to read each line
-			T = new dataset();		//to Save all instances
+			T = new Dataset();		//to Save all instances
 			T.N_size=-1; 			//empty
 			T.N_classes=0;
 			int length = 0;
@@ -32,7 +32,7 @@ public class ReadCSV implements readFile {
 			     }
 				 
 				String[] data = line.split(","); 		
-				instance row = new instance();	
+				Instance row = new Instance();	
 				row.addAll(data);			
 				T.add(row);
 				
@@ -99,20 +99,20 @@ public class ReadCSV implements readFile {
 	}
 	
 	
-	public dataset data(){
+	public Dataset data(){
 		return T;
 	}
 	
-	public instance get(int row_id) {
+	public Instance get(int row_id) {
 		return T.getInstance( row_id );
 	}
 	
-	public static void Nc_count(dataset d){
+	public static void Nc_count(Dataset d){
 		// Initialize Npjkc
 		d.Nc = new int[d.N_classes];
 		// Count
 		for(int i =0; i<d.N_size; i++) {
-			instance inst = d.getInstance(i+1); // First is atributes names
+			Instance inst = d.getInstance(i+1); // First is atributes names
 			int ci = Integer.parseInt(inst.get(d.ri_val.size()));
 			for(int c=0; c<d.N_classes; c++)
 				if(ci==c)

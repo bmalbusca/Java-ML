@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 
 
-public class Tree extends graph{
+public class Tree extends Graph{
 	
-	ArrayList<node> nodes = super.nodes;// array of nodes
-	ArrayList<edge> edges = super.edges;// array of edges 
-	protected node Root;
+	ArrayList<Node> nodes = super.nodes;// array of nodes
+	ArrayList<Edge> edges = super.edges;// array of edges 
+	protected Node Root;
 	
 	//constructor
 	public Tree() {	 
@@ -24,7 +24,7 @@ public class Tree extends graph{
 	
 	
 	
-	public void connect(node n1, node n2, edge e) {
+	public void connect(Node n1, Node n2, Edge e) {
 		
 		//add node n2 to the connected nodes list of n1
 		//add edge e to edge list seen by n1
@@ -38,14 +38,14 @@ public class Tree extends graph{
 
 	
 	public void printGraph() {
-		for(edge e : edges) {
+		for(Edge e : edges) {
 			System.out.println(e.nodes[0].name()+"-"+e.nodes[1].name());
 		}
 	}
 	
 	public void printNodes() {
 		System.out.print("Nodes [");
-		for(node X : nodes) {
+		for(Node X : nodes) {
 			System.out.print(" "+X.name() );
 		}
 		System.out.println(" ]");
@@ -60,7 +60,7 @@ public class Tree extends graph{
 	 */
 
 	
-	public void updateWeight( edge e,  double weight) {
+	public void updateWeight( Edge e,  double weight) {
 		
 		if(e.weight() != -1) {	// Alert user from a possible mistake 
 			System.out.println("*Atencion* this vertex was already updated!");
@@ -80,7 +80,7 @@ public class Tree extends graph{
 	 */
 
 
-	public void addNewNode( node n) {
+	public void addNewNode( Node n) {
 		this.nodes.add(n);
 		super.n++;
 		
@@ -95,33 +95,33 @@ public class Tree extends graph{
 	 */
 
 
-	public void addNewEdge( edge e) {
+	public void addNewEdge( Edge e) {
 		this.edges.add(e);
 		
 	}
 	
 	
 	
-	public ArrayList<edge> getEdges(){
+	public ArrayList<Edge> getEdges(){
 		return edges;
 	}
 	
 	
-	public ArrayList<node> getNodes(){
+	public ArrayList<Node> getNodes(){
 		return nodes;
 	}
 	
 	
 	public void printEdges() {
 		System.out.print("Edges [");
-		for(edge e: edges) {
+		for(Edge e: edges) {
 			System.out.print(" "+e.nodes[0].label+"-"+e.nodes[1].label);
 		}
 		System.out.println(" ]");
 	}
 
-	public boolean contains(node n) {
-		for(node ncomp : nodes) {
+	public boolean contains(Node n) {
+		for(Node ncomp : nodes) {
 			if(ncomp.label.equals(n.label)) {
 				return true;
 			}

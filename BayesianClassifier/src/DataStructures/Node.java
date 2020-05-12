@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import FileIO.dataset;
-import FileIO.instance;
+import FileIO.Dataset;
+import FileIO.Instance;
 
 
 
@@ -16,7 +16,7 @@ import FileIO.instance;
  * @author brunocfigueiredo
  */
 
-public class node implements  Cloneable {
+public class Node implements  Cloneable {
 	
 	protected int ID;			// node ID
 	protected String label;		// Real name that comes with the CSV file
@@ -29,34 +29,34 @@ public class node implements  Cloneable {
 	public double theta[][][];
 	
 	//protected ArrayList<node> LinkedNodes = new ArrayList<node>();  //parent nodes or simply the connected nodes to Xi
-	protected ArrayList<edge> edges = new ArrayList<edge>(); 		//edges seen by this node Xi
-	Map<edge, node> map = new HashMap< edge,node>();				//Fast search for nodes-edge pairs
+	protected ArrayList<Edge> edges = new ArrayList<Edge>(); 		//edges seen by this node Xi
+	Map<Edge, Node> map = new HashMap< Edge,Node>();				//Fast search for nodes-edge pairs
 	
 	//constructor 
-	public node(int id, String label) { //TO-DO check if id and label exists
+	public Node(int id, String label) { //TO-DO check if id and label exists
 		this.ID=id;
 		this.label = label;
 	}
 	
-	public void addEdge(edge e) {
+	public void addEdge(Edge e) {
 		edges.add(e);
 		
 	}
 	
-	public void MapNodes(edge e, node n) {
+	public void MapNodes(Edge e, Node n) {
 		addEdge(e);
 		map.put(e,n);
 		
 	}
 	
-	public node getParent(edge e) {
-		node parent = this.map.get(e);
+	public Node getParent(Edge e) {
+		Node parent = this.map.get(e);
 		
 		return parent; 
 	}
 
 	
-	public ArrayList<edge> edges(){
+	public ArrayList<Edge> edges(){
 		return edges; 
 	}
 	
@@ -71,18 +71,18 @@ public class node implements  Cloneable {
 
 	
 	public void sortEdges() {
-		Collections.sort(edges,new edgeCompare()); //Sort edge list
+		Collections.sort(edges,new EdgeCompare()); //Sort edge list
 	}
 
 
 	
 	@Override
-	protected node clone() throws CloneNotSupportedException {
+	protected Node clone() throws CloneNotSupportedException {
 
-	    return (node) super.clone();
+	    return (Node) super.clone();
 	}
 	
-	public static void node_counts(dataset d, node n){
+	public static void node_counts(Dataset d, Node n){
 		n.ri = d.ri_val.get(n.ID);
 		// Initialize Npjkc
 		n.Npjkc = new int[d.ri_val.size()][][][];
@@ -93,7 +93,7 @@ public class node implements  Cloneable {
 		n.NJkc = new int[n.ri][d.N_classes];
 		// Count
 		for(int i =0; i<d.N_size; i++) {
-			instance inst = d.getInstance(i+1); // First is atributes names
+			Instance inst = d.getInstance(i+1); // First is atributes names
 			int ki = Integer.parseInt(inst.get(n.ID));
 			int ci = Integer.parseInt(inst.get(d.ri_val.size()));
 			for(int p=0; p < d.ri_val.size() ; p++) {

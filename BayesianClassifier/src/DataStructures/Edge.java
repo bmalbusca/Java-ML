@@ -2,15 +2,15 @@ package DataStructures;
 
 
 // vertex definition 
-public  class edge {
+public  class Edge {
 
 	private double weight;
 	protected int ID;
-	protected node[] nodes = new node[2]; 
+	protected Node[] nodes = new Node[2]; 
 	protected boolean directed = false;
 	
 	//constructor
-	public edge(double w, node n1, node n2) {
+	public Edge(double w, Node n1, Node n2) {
 		this.weight=w;
 		this.nodes[0]=n1;
 		this.nodes[1]=n2;
@@ -21,7 +21,7 @@ public  class edge {
 	
 	
 	//overloading 
-	public edge(double w, node parent, node child, boolean directed) {
+	public Edge(double w, Node parent, Node child, boolean directed) {
 		this.weight=w;
 		this.nodes[0]=parent;
 		this.nodes[1]=child;
@@ -29,26 +29,26 @@ public  class edge {
 	}
 	
 	
-	public node from() {
+	public Node from() {
 		if(!this.directed) {
 			System.out.println("*Alert* This graph is not directed");
 		}
 		return this.nodes[0];
 	}
 	
-	public node to() {
+	public Node to() {
 		if(!this.directed) {
 			//System.out.println("*Alert* This graph is not directed");
 		}
 		return this.nodes[1];
 	}
 	
-	public node next() {
+	public Node next() {
 		return this.nodes[1];
 		
 	}
 	
-	public node[] nodes() {
+	public Node[] nodes() {
 		return nodes;
 	}
 	
@@ -62,9 +62,9 @@ public  class edge {
 		return this.weight;
 	}
 	
-	public edge clone() {
+	public Edge clone() {
 		
-		edge new_edge = new edge(this.weight,this.nodes[0],this.nodes[1]);
+		Edge new_edge = new Edge(this.weight,this.nodes[0],this.nodes[1]);
 		return new_edge;
 	}
 	
