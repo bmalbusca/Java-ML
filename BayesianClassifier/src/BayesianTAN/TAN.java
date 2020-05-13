@@ -26,6 +26,11 @@ public class TAN {
 		update_counts(Data, G);
 		run_model(G, Data, model);
 		
+		Tree T =  G.MST();
+		T.directTree();
+		
+		T.printClassifier();
+		
 		//for bias-train.csv - small train set
 		//G.updateWeight(G.getEdges().get(2), 2);
 		//G.updateWeight(G.getEdges().get(1), 5);
@@ -35,13 +40,9 @@ public class TAN {
 
 		
 		System.out.println();
-		G.printGraph();
-		
-		
-		
-		//Tree T =  G.MST();
-		//T.printGraph();
-		//T.printNodes();
+		//G.printGraph();
+				
+
 			
 		
 	}

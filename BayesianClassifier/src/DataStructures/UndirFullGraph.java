@@ -166,6 +166,7 @@ public class UndirFullGraph extends Graph {
 		Edge e, eMax;
 
 		T.addNewNode(nodes.get(0)); // pick the first node
+		T.Root = nodes.get(0);
 
 		do { 
 
@@ -194,7 +195,7 @@ public class UndirFullGraph extends Graph {
 			candidateE.clear();
 
 		} while (TreeNodes.size() < super.n);
-
+		
 		return T;
 
 	}

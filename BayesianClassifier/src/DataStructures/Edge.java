@@ -68,6 +68,13 @@ public  class Edge {
 		return new_edge;
 	}
 	
+	/** Flips the edge, switching the parent and child nodes. */
+	public void flip() {
+		Node tempParent = nodes[0];
+		nodes[0] = nodes[1];
+		nodes[1] = tempParent;
+	}
+	
 	
 }
 
