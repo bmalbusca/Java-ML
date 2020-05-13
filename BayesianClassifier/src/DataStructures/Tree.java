@@ -170,40 +170,50 @@ public class Tree extends Graph{
 			}
 		}
 	}
-	/*
+	
 	public void updateNodeThetas(Dataset data) {
+		
+		// We calculate the thetas for the Root, since it is the only with no parent.
+		Root.theta = new double[1][Root.ri][data.N_classes];
+		for (int k = 0; k < Root.ri; k++) {
+			for (int c = 0; c < data.N_classes; c++) {
 
+				int Npjkc = Root.Npjkc[0][0][k][c];
+
+				int	NKjc = data.Nc[c];
+
+				Root.theta[0][k][c] = ((double)(Npjkc + 0.5)) / ((double)(NKjc + Root.ri * 0.5));
+				System.out.println("theta_"+Root.ID+0+k+c+" -> "+Root.theta[0][k][c]);
+			}
+		}		
+		
+		// We calculate the thetas for the child node of each edge
 		for (Edge e : edges) {
 
-			// Find the node's parent to know how many parameters there will be
-			// If the node has no parent, there is only one row of parameters
-			Node parent = getParent(node);
-			int parentRange = parent == null ? 1 : parent.attribute.getRange();
-			int parentIndex = parent == null ? node.attribute.index : parent.attribute.index;
+			Node parent = e.nodes[0];
+			Node child = e.nodes[1];
+			int parentRange = parent.ri;
+			int childRange = child.ri;
+			int parentID = parent.ID;
+			int childID = child.ID;
 
-			node.parameters = new double[parentRange][node.attribute.getRange()][outputNode.attribute.getRange()];
+			child.theta = new double[parentRange][childRange][data.N_classes];
 
-			for (int j = 0; j < node.parameters.length; j++) {
-				for (int k = 0; k < node.parameters[j].length; k++) {
-					for (int c = 0; c < node.parameters[j][k].length; c++) {
+			for (int j = 0; j < parentRange; j++) {
+				for (int k = 0; k < childRange; k++) {
+					for (int c = 0; c < data.N_classes; c++) {
 
-						int count = node.counts[parentIndex][j][k][c];
+						int Npjkc = child.Npjkc[parentID][j][k][c];
 
-						int kCount = 0;
+						int	NKjc = parent.NJkc[j][c];
 
-						// If the node has no parent, counting the times
-						// "the parent has any configuration and C has c-th value"
-						// is just counting the times "c has c-th value"
-						if (parent != null)
-							kCount = parent.jCounts[j][c];
-						else
-							kCount = outputNode.cCounts[c];
-
-						node.parameters[j][k][c] = (count + 0.5) / (kCount + node.attribute.getRange() * 0.5);
+						child.theta[j][k][c] = ((double)(Npjkc + 0.5)) / ((double)(NKjc + childRange * 0.5));
+						System.out.println("theta_"+childID+j+k+c+" -> "+child.theta[j][k][c]);
 
 					}
 				}
 			}
-		}*/
+		}
+	}
 
 }
