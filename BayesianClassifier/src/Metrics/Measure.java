@@ -177,15 +177,15 @@ public class  Measure {
 		System.out.println("\t\tSpecificity\tSensitivity\tF1score \tClass");
 		int avgID = confusionMatrix.size();  // Position for the weighted avg
 		for(int i=0; i < avgID; i++) { //[FN FP TP  TN ]			
-			System.out.printf("\t\t%.3f\t", this.specificity()[i]);
-			System.out.printf("\t%.3f\t", this.sensitivity()[i]);
-			System.out.printf("\t%.3f\t", this.F1_score()[i]);
+			System.out.printf("\t\t%.2f %%\t", this.specificity()[i] * 100);
+			System.out.printf("\t%.2f %%\t", this.sensitivity()[i] * 100);
+			System.out.printf("\t%.2f %%\t", this.F1_score()[i] * 100);
 			System.out.println("\t" + i);
 		}
 		System.out.print("Weighted Avg.");
-		System.out.printf("\t%.3f", this.specificity()[avgID]);
-		System.out.printf("\t\t%.3f", this.sensitivity()[avgID]);
-		System.out.printf("\t\t%.3f", this.F1_score()[avgID]);
+		System.out.printf("\t%.2f %%", this.specificity()[avgID] * 100);
+		System.out.printf("\t\t%.2f %%", this.sensitivity()[avgID] * 100);
+		System.out.printf("\t\t%.2f %%", this.F1_score()[avgID] * 100);
 	}	
 	
 }
