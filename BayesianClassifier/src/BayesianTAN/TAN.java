@@ -29,7 +29,7 @@ public class TAN {
 		
 		Tree T =  G.MST();
 		T.directTree();
-		T.updateNodeThetas(Data);
+		T.updateThetas(Data);
 		
 		T.printClassifier();
 

@@ -171,7 +171,7 @@ public class Tree extends Graph{
 		}
 	}
 	
-	public void updateNodeThetas(Dataset data) {
+	public void updateThetas(Dataset data) {
 		
 		// We calculate the thetas for the Root, since it is the only with no parent.
 		Root.theta = new double[1][Root.ri][data.N_classes];
@@ -209,11 +209,14 @@ public class Tree extends Graph{
 
 						child.theta[j][k][c] = ((double)(Npjkc + 0.5)) / ((double)(NKjc + childRange * 0.5));
 						System.out.println("theta_"+childID+j+k+c+" -> "+child.theta[j][k][c]);
-
 					}
 				}
 			}
 		}
+		// Update theta_c
+		data.theta_c = new double[data.N_classes];
+		for (int i = 0; i < data.N_classes; i++) {
+			data.theta_c[i] = ((double)(data.Nc[i] + 0.5)) / ((double)(data.N_size + data.N_classes * 0.5));
+		}
 	}
-
 }
