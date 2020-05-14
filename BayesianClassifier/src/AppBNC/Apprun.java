@@ -26,17 +26,16 @@ public class Apprun {
 		
 		InputParams param = new InputParams(args); 		//Parse input arguments
 		ReadCSV file = new ReadCSV(param.trainfile);	//Read input file and return the content
-		file.print();
+		//file.print();
 		
 		
 		
-		TAN bncModel = new TAN(file.data(), param.score);	// TAN(Features array, Score Model)
-		
-		bncModel.train();	//not implemented
+		TAN bncModel = new TAN(param.score);	// TAN(Features array, Score Model)
+		bncModel.train(file.data());	
 		
 		
 		ReadCSV fileTest = new ReadCSV(param.testfile);	//Read input file and return the content
-		bncModel.predict(fileTest.data());	//not implemented
+		bncModel.predict(fileTest.data());	
 
 	
 	

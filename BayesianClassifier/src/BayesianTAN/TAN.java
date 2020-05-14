@@ -2,6 +2,8 @@ package BayesianTAN;
 
 import DataStructures.*;
 import FileIO.*;
+import java.util.Date;
+
 
 
 
@@ -11,46 +13,25 @@ public class TAN {
 	protected String model;
 	protected int  N_instances;
 	protected int  N_classes;
-	private Tree tree; 
+	private Tree tree;
+	
+	
+	private long timeBuild =0; 
+	private long timeTest =0; 
 
 
-	public TAN(Dataset Data, String model) {
-		
-		
-		this.N_classes=Data.N_classes;
-		this.N_instances= Data.N_size; 
+	public TAN(String model) {
 		this.model= model;
-		
-		Instance FeaturesNames = Data.getInstance(0);
-		UndirFullGraph G = new UndirFullGraph(FeaturesNames);
-	
-		update_counts(Data, G);
-		run_model(G, Data, model);
-		
-		Tree T =  G.MST();
-		T.directTree();
-		T.updateThetas(Data);
-		
-		T.printClassifier();
 
-		this.tree = T; 
-		System.out.println();
-	
-		
-	
-				
-
-			
-		
 	}
 	
-	public void update_counts(Dataset d, UndirFullGraph G) {
+	private void update_counts(Dataset d, UndirFullGraph G) {
 		ReadCSV.Nc_count(d);	
 		for(int i=0; i<d.ri_val.size(); i++)
 			Node.node_counts(d, G.getNodes().get(i));	
 	}
 	
-	public void run_model(UndirFullGraph graph, Dataset d, String m){
+	private void run_ScoreModel(UndirFullGraph graph, Dataset d, String m){
 		ScoreModel scoremodel = null;
 		if ("LL".equals(m)) {
 			scoremodel = new LLmodel();
@@ -63,16 +44,49 @@ public class TAN {
 		}
 	}
 	
-	public void train() {
+	public void train(Dataset Data) {
 		
-		System.out.println("Not yet!");
+	    long startTime = new Date().getTime();
+		
+		Instance FeaturesNames = Data.getInstance(0);
+		UndirFullGraph G = new UndirFullGraph(FeaturesNames);
+	
+		update_counts(Data, G);
+		run_ScoreModel(G, Data, this.model);
+
+		
+		Tree T =  G.MST();
+		T.directTree();
+		T.updateThetas(Data);
+
+		
+		long endTime = new Date().getTime();
+		timeBuild = endTime - startTime;
+	
+		this.tree = T; 
+		this.N_classes=Data.N_classes;
+		this.N_instances= Data.N_size;
+		
+		
+		this.tree.printClassifier();
+		System.out.println("Time to build: "+timeBuild+ "ms");
+		
+		
+		
+		
+		
 	}
 	
 	
 	
 	public void predict(Dataset T) {
+		long startTime = new Date().getTime();
 		
 		Classify(T);
+		
+		long endTime = new Date().getTime();
+		this.timeTest = endTime - startTime;
+		System.out.println("Time to test: "+timeTest+ "ms");
 		
 	}
 
@@ -80,7 +94,7 @@ public class TAN {
 	
 	
 	
-	public double JointProbC(Instance values, int c,  Tree T) {
+	private double JointProbC(Instance values, int c,  Tree T) {
 	
 		double prob =1;
 		int j,k;
@@ -110,13 +124,11 @@ public class TAN {
 		int  idxC = tree.Nnodes();
 		Node C = tree.getNodes().get(idxC);
 		
-		System.out.println("Node C?:"+C.name());
 		
 		double[] probs = new double[C.ri];
 		double MaxProb;
 		int c_class =0;
 
-		System.out.println("c values " + C.ri);
 		for(int i =1; i<=T.N_size; i++) {
 			Instance inst = T.getInstance(i);
 			MaxProb = 0;
@@ -130,8 +142,8 @@ public class TAN {
 					
 				}		
 			}
-			System.out.println("Row "+i+" "+ c_class + ": " + inst.get(idxC));	
-		}
+			System.out.println("instance "+i+ " : " + c_class);	
+		}	
 		
 		return probs;  
 	
