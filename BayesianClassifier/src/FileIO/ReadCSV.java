@@ -122,38 +122,5 @@ public class ReadCSV implements ReadFile {
 	
 	
 	
-/*	public void update_N_classes() {
-		int length = T.getInstance(0).len();	//lenght of instance
-		T.N_classes=0;
-		ArrayList<String> C_aux = new ArrayList<String>();
-		for(int i=0; i<T.N_size; i++) {
-			String ci = T.getInstance(i+1).get(length-1);
-			if(!C_aux.contains(ci)) {
-				C_aux.add(ci);
-				T.N_classes++;
-			}
-		}
-	}
-	
-	//falta meter no node
-	public void update_ri() {
-		int length = T.getInstance(0).len();	//lenght of instance		
-		ArrayList<Integer> ri_val = new ArrayList<Integer>();		//contains ri value of each xi					
-		ArrayList<ArrayList<Integer>> ri_aux_list = new ArrayList<ArrayList<Integer>>();	//arraylist of all possible value of xi
-		for(int i = 0; i < length -1 ;i++) {
-	    	ArrayList<Integer> ri_aux = new ArrayList<Integer>();
-	    	ri_aux_list.add(ri_aux);
-	    	ri_val.add(0);
-	    }		
-		for(int i=0; i<T.N_size; i++) {
-			instance xk = T.getInstance(i+1);
-			for(int k=0; k<length-1; k++) {				
-				if(!ri_aux_list.contains(ci)) {
-					C_aux.add(ci);
-				}
-			}
-		}
-	}*/
-	
 	
 }

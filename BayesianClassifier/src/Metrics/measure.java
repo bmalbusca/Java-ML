@@ -7,11 +7,11 @@ public class  measure {
 	 *  variables metrics
 	 * 
 	 */
-	protected long accValue = 0; 
+	protected double accValue = 0; 
 	
 
 
-	public measure (Dataset Ctest, Dataset Cpredict) {
+	public measure ( Dataset Cpredict,Dataset Ctest) {
 		
 		
 		if(Cpredict.N_classes != Ctest.N_classes) {
@@ -20,16 +20,19 @@ public class  measure {
 		        System.exit(1);
 		}
 		
-		int idC = Cpredict.N_classes;
-		int correctC=0, incorrectC=0; //for accuracy measurement
+		int idC = Cpredict.getInstance(0).len()-1;
+		double correctC=0, incorrectC=0; //for accuracy measurement
 
 			
 		
 		
-		for(int i =1 ; i< Cpredict.N_size; ++i) {	// data set iterative loop 
+		for(int i =1 ; i<= Cpredict.N_size; ++i) {	// data set iterative loop 
 			
-				System.out.println(Cpredict.getInstance(i).get(idC) + "VS" +Ctest.getInstance(i).get(idC) );
-				if (Cpredict.getInstance(i).get(idC).equals(Ctest.getInstance(i).get(idC))) {
+				//System.out.println(Cpredict.getInstance(i).get(idC) + "VS" +Ctest.getInstance(i).get(idC) );
+				String val1, val2;
+				val1 = Cpredict.getInstance(i).get(idC);
+				val2 = Ctest.getInstance(i).get(idC);
+				if (val1.equals(val2)) {
 					++correctC;
 				}
 				else {
@@ -42,10 +45,9 @@ public class  measure {
 				
 				
 			}
-			
-			
-			
+	
 			this.accValue = correctC/(incorrectC + correctC);
+			
 
 	}
 	
@@ -53,10 +55,10 @@ public class  measure {
 	
 	
 	
-	public long  accuracy() {
+	public double  accuracy() {
 		
-		System.out.println("accuracy: " + accValue);
-		return accValue; 
+		System.out.printf("accuracy: %.2f %%", this.accValue * 100);
+		return this.accValue; 
 	}
 	
 	

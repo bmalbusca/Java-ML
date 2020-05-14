@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 
 import BayesianTAN.TAN;
 import FileIO.*;
+import Metrics.measure;
 
 /* O que falta fazer neste momento -  Project progress: %45
  * 
@@ -35,10 +36,14 @@ public class Apprun {
 		
 		
 		ReadCSV fileTest = new ReadCSV(param.testfile);	//Read input file and return the content
-		bncModel.predict(fileTest.data());	
-
+		Dataset predict = bncModel.predict(fileTest.data());	
+		
+	
+		
 	
 	
+		measure  metrics = new measure(predict ,fileTest.data());
+		metrics.accuracy();
 	}
 
 	

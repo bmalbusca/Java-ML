@@ -20,6 +20,16 @@ public class Dataset {
 		return this.T.get(row_id);
 	}
 
-
+	public void print() {
+		
+		if (!T.isEmpty()) {
+			for(int i = 0; i<= this.N_size; ++i) {
+				this.T.get(i).print();	
+			}
+		}
+		else {
+			System.out.println("Data set is Empty!");
+		}
+	}
 
 }

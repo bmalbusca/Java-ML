@@ -15,9 +15,9 @@ public class TAN {
 	protected int  N_classes;
 	private Tree tree;
 	
-	
 	private long timeBuild =0; 
 	private long timeTest =0; 
+	
 
 
 	public TAN(String model) {
@@ -79,15 +79,15 @@ public class TAN {
 	
 	
 	
-	public void predict(Dataset T) {
+	public Dataset predict(Dataset T) {
 		long startTime = new Date().getTime();
-		
-		Classify(T);
+		Dataset predict = Classify(T);
 		
 		long endTime = new Date().getTime();
 		this.timeTest = endTime - startTime;
 		System.out.println("Time to test: "+timeTest+ "ms");
 		
+		return predict;
 	}
 
 	
@@ -119,11 +119,15 @@ public class TAN {
 	
 	
 	
-	public double[] Classify(Dataset T) {
+	public Dataset Classify(Dataset T) {
 		
 		int  idxC = tree.Nnodes();
 		Node C = tree.getNodes().get(idxC);
 		
+		Dataset Tpredicted = new Dataset();
+		Tpredicted.add(T.getInstance(0));
+		Tpredicted.N_size=T.N_size;
+		Tpredicted.N_classes=T.N_classes;
 		
 		double[] probs = new double[C.ri];
 		double MaxProb;
@@ -131,7 +135,11 @@ public class TAN {
 
 		for(int i =1; i<=T.N_size; i++) {
 			Instance inst = T.getInstance(i);
+			Instance instPredict = new Instance();
+			
+			instPredict.copy(inst, inst.len());
 			MaxProb = 0;
+			
 			
 			for (int c = 0; c < C.ri; c++) {
 				probs[c] = JointProbC(inst, c, tree ) * C.thetac[c];
@@ -142,10 +150,15 @@ public class TAN {
 					
 				}		
 			}
-			System.out.println("instance "+i+ " : " + c_class);	
+			
+
+			instPredict.set( idxC, String.valueOf(c_class)); 
+			Tpredicted.add(instPredict);
+			System.out.println("instance "+i+ " : " + c_class + " ("+inst.get(idxC)+")");
+
 		}	
 		
-		return probs;  
+		return Tpredicted;  
 	
 	}
 	
