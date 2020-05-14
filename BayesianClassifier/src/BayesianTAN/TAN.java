@@ -25,12 +25,25 @@ public class TAN {
 
 	}
 	
+	/**
+	 * Runs the counter of each class and each node.
+	 * 
+	 * @param d Dataset with some useful counts.
+	 * @param G Undirected full graph where the nodes are stored.
+	 */
 	private void update_counts(Dataset d, UndirFullGraph G) {
 		ReadCSV.Nc_count(d);	
 		for(int i=0; i<d.get_ri_val().size(); i++)
 			Node.node_counts(d, G.getNodes().get(i));	
 	}
 	
+	/**
+	 * Runs the score model to calculate the weight of the edges.
+	 * 
+	 * @param graph Undirected full graph where the edges are stored.
+	 * @param d Dataset where some counts are stored.
+	 * @param m String with input parameter to select which model to run.
+	 */
 	private void run_ScoreModel(UndirFullGraph graph, Dataset d, String m){
 		ScoreModel scoremodel = null;
 		if ("LL".equals(m)) {
@@ -69,10 +82,6 @@ public class TAN {
 		
 		this.tree.printClassifier();
 		System.out.println("Time to build:\t"+timeBuild+ " ms");
-		
-		
-		
-		
 		
 	}
 	
@@ -147,10 +156,8 @@ public class TAN {
 				if (probs[c] > MaxProb) {
 					MaxProb = probs[c];
 					c_class = c;
-					
 				}		
 			}
-			
 
 			instPredict.set( idxC, String.valueOf(c_class)); 
 			Tpredicted.add(instPredict);
@@ -161,10 +168,5 @@ public class TAN {
 		return Tpredicted;  
 	
 	}
-	
-
-	
-
-	
 	
 }

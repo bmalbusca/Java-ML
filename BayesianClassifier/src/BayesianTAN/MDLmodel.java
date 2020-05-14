@@ -4,12 +4,14 @@ import DataStructures.Edge;
 import DataStructures.Node;
 import FileIO.Dataset;
 
+/**
+ * Calculates the weight of an edge using the Minimum Description Length score.
+ * MDL uses the same formula as the LL, with a penalty applied to it.
+ * Subclass of LLmodel, overriding the calculate method to account for the penalization.
+ * 
+ * @author Group 20
+ */
 public class MDLmodel extends LLmodel {
-
-	/*
-	 * MDL uses the same formula as the LL, with a penalty applied to it.
-	 * Subclass of LLmodel, overriding the calculate method to account for the penalization.
-	 */
 
 	@Override
 	protected double calculate(Edge edge, Dataset d) {
@@ -22,4 +24,5 @@ public class MDLmodel extends LLmodel {
 
 		return LL - penalization;
 	}
+	
 }

@@ -125,7 +125,8 @@ public class UndirFullGraph extends Graph {
 		this.edges.add(e);
 
 	}
-
+	
+	
 	public ArrayList<Edge> getEdges() {
 		return edges;
 	}
