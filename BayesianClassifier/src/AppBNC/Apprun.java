@@ -33,7 +33,10 @@ public class Apprun {
 		TAN bncModel = new TAN(file.data(), param.score);	// TAN(Features array, Score Model)
 		
 		bncModel.train();	//not implemented
-		bncModel.predict();	//not implemented
+		
+		
+		ReadCSV fileTest = new ReadCSV(param.testfile);	//Read input file and return the content
+		bncModel.predict(fileTest.data());	//not implemented
 
 	
 	

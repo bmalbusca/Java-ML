@@ -16,6 +16,7 @@ public class Tree extends Graph{
 	ArrayList<Edge> edges = super.edges;// array of edges 
 	protected Node Root;
 	
+	
 	//constructor
 	public Tree() {	 
 	
@@ -127,6 +128,11 @@ public class Tree extends Graph{
 	}
 	
 	
+	public  Node root() {
+		return this.Root;
+	}
+	
+	
 	public int Nedges() {
 		
 		return super.ne;
@@ -214,9 +220,15 @@ public class Tree extends Graph{
 			}
 		}
 		// Update theta_c
+		Node C= new Node(n+1, "C");
+		C.thetac= new double[data.N_classes];
+		C.ri = data.N_classes; 
+		nodes.add(C);
+		
 		data.theta_c = new double[data.N_classes];
 		for (int i = 0; i < data.N_classes; i++) {
 			data.theta_c[i] = ((double)(data.Nc[i] + 0.5)) / ((double)(data.N_size + data.N_classes * 0.5));
+			C.thetac[i] =  data.theta_c[i];
 		}
 	}
 }

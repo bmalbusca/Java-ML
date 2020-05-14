@@ -36,6 +36,8 @@ public class TAN {
 		this.tree = T; 
 		System.out.println();
 	
+		
+	
 				
 
 			
@@ -83,6 +85,9 @@ public class TAN {
 		double prob =1;
 		int j,k;
 		
+		//root
+		k = Integer.parseInt(values.get(T.root().id()));	
+		prob *= T.root().theta[0][k][c];
 		for (Edge e : T.getEdges() ) {
 			
 			Node parent = e.parent(); 
@@ -105,16 +110,19 @@ public class TAN {
 		int  idxC = tree.Nnodes();
 		Node C = tree.getNodes().get(idxC);
 		
+		System.out.println("Node C?:"+C.name());
+		
 		double[] probs = new double[C.ri];
 		double MaxProb;
 		int c_class =0;
 
-		
-		for(int i =0; i<T.N_size; i++) {
-			Instance inst = T.getInstance(i+1);
+		System.out.println("c values " + C.ri);
+		for(int i =1; i<=T.N_size; i++) {
+			Instance inst = T.getInstance(i);
 			MaxProb = 0;
+			
 			for (int c = 0; c < C.ri; c++) {
-				probs[c] = JointProbC(inst, c, tree );
+				probs[c] = JointProbC(inst, c, tree ) * C.thetac[c];
 			
 				if (probs[c] > MaxProb) {
 					MaxProb = probs[c];
@@ -122,7 +130,7 @@ public class TAN {
 					
 				}		
 			}
-			System.out.println("Row "+i+" "+ c_class );	
+			System.out.println("Row "+i+" "+ c_class + ": " + inst.get(idxC));	
 		}
 		
 		return probs;  
