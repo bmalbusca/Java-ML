@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 
 import BayesianTAN.TAN;
 import FileIO.*;
-import Metrics.measure;
+import Metrics.Measure;
 
 /* O que falta fazer neste momento -  Project progress: %45
  * 
@@ -42,17 +42,8 @@ public class Apprun {
 		
 	
 	
-		measure  metrics = new measure(predict ,fileTest.data());
-		metrics.accuracy();
-		
-		System.out.println();
-		for(double val: metrics.sensitivity()) {
-			System.out.print(" "+ val+ " ");
-		}
-		System.out.println();
-		for(double val: metrics.specificity()) {
-			System.out.print(" "+ val+ " ");
-		}
+		Measure  metrics = new Measure(predict ,fileTest.data());
+		metrics.print();
 	}
 
 	
