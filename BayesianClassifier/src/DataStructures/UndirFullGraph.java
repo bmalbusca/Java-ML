@@ -96,7 +96,6 @@ public class UndirFullGraph extends Graph {
 		if (e.weight() != -1) { // Alert user from a possible mistake
 			System.out.println("*Atencion* this edge was already updated!");
 		}
-		System.out.println("Edge " + e.ID + " " + e.nodes[0].label + "to" + e.nodes[1].label + " updated!");
 		e.addWeight(weight);
 
 	}
