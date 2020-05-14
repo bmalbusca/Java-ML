@@ -100,6 +100,11 @@ public class ReadCSV implements ReadFile {
 		return T.getInstance( row_id );
 	}
 	
+	/**
+	 * Method that counts the number of times each class appears in the file.
+	 * 
+	 * @param d Dataset where the instances and the array with the counts are stored.
+	 */
 	public static void Nc_count(Dataset d){
 		// Initialize Npjkc
 		d.Nc = new int[d.N_classes];

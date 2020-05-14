@@ -59,7 +59,10 @@ public class Tree extends Graph{
 		}
 	}
 	
-	
+	/**
+	 * Method to print the directed tree on the terminal.
+	 * It prints in format [Child_name] : class [Parent_name]
+	 */
 	public void printClassifier() {
 		System.out.println("Classifier :\t" + Root.name() + " : class");
 		for(int i=0; i<edges.size(); i++) {

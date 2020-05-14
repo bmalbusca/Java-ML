@@ -4,6 +4,11 @@ import DataStructures.Edge;
 import DataStructures.Node;
 import FileIO.Dataset;
 
+/**
+ * Calculates the weight of an edge using the log-likelihood score.
+ * 
+ * @author Group 20
+ */
 public class LLmodel extends ScoreModel {
 
 	protected double calculate(Edge edge, Dataset d) {
@@ -16,9 +21,9 @@ public class LLmodel extends ScoreModel {
 		for (int j = 0; j < parent.get_ri(); j++) {
 			for (int k = 0; k < child.get_ri(); k++) {
 				for (int c = 0; c < s; c++) {
-					int Nijkc = child.get_Npjkc()[parent.id()][j][k][c];
-					int NJkc = child.get_NJkc()[k][c];
-					int NKjc = parent.get_NJkc()[j][c];
+					int Nijkc = child.get_Npjkc()[parent.id()][j][k][c]; // each node will have the Nijkc for each parent
+					int NJkc = child.get_NJkc()[k][c];		
+					int NKjc = parent.get_NJkc()[j][c];		// NKjc of child is NJkc of parent so we only store one
 					int Nc = d.getNc()[c];
 
 					// Prevent log2() from exploding
@@ -31,4 +36,5 @@ public class LLmodel extends ScoreModel {
 		}
 		return weight;
 	}
+	
 }
