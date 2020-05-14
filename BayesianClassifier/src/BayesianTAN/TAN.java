@@ -11,6 +11,7 @@ public class TAN {
 	protected String model;
 	protected int  N_instances;
 	protected int  N_classes;
+	private Tree tree; 
 
 
 	public TAN(Dataset Data, String model) {
@@ -31,17 +32,10 @@ public class TAN {
 		T.updateNodeThetas(Data);
 		
 		T.printClassifier();
-		
-		//for bias-train.csv - small train set
-		//G.updateWeight(G.getEdges().get(2), 2);
-		//G.updateWeight(G.getEdges().get(1), 5);
-		//G.updateWeight(G.getEdges().get(0), 3);
-		//G.updateWeight(G.getEdges().get(3), 1);
-		//G.updateWeight(G.getEdges().get(4), 1);
 
-		
+		this.tree = T; 
 		System.out.println();
-		//G.printGraph();
+	
 				
 
 			
@@ -74,15 +68,70 @@ public class TAN {
 	
 	
 	
-	
-	//ArrayList<C_predicted>   = TAN.predict( ArrayList<X_test> )
-	
-	public void predict() {
-		System.out.println("Not yet!");
+	public void predict(Dataset T) {
 		
+		Classify(T);
+		
+	}
+
+	
+	
+	
+	
+	public double JointProbC(Instance values, int c,  Tree T) {
+	
+		double prob =1;
+		int j,k;
+		
+		for (Edge e : T.getEdges() ) {
+			
+			Node parent = e.parent(); 
+			Node child = e.child();
+			
+			j = Integer.parseInt(values.get(parent.id())); //use parseInt()
+			k = Integer.parseInt(values.get(child.id()));	
+			
+			prob *= child.theta[j][k][c];
+			
+		}	
+		return prob; 	
 	}
 	
 	
-	//f1.score(ArrayList<C_predicted>, ArrayList<C_test>)
+	
+	
+	public double[] Classify(Dataset T) {
+		
+		int  idxC = tree.Nnodes();
+		Node C = tree.getNodes().get(idxC);
+		
+		double[] probs = new double[C.ri];
+		double MaxProb;
+		int c_class =0;
+
+		
+		for(int i =0; i<T.N_size; i++) {
+			Instance inst = T.getInstance(i+1);
+			MaxProb = 0;
+			for (int c = 0; c < C.ri; c++) {
+				probs[c] = JointProbC(inst, c, tree );
+			
+				if (probs[c] > MaxProb) {
+					MaxProb = probs[c];
+					c_class = c;
+					
+				}		
+			}
+			System.out.println("Row "+i+" "+ c_class );	
+		}
+		
+		return probs;  
+	
+	}
+	
+
+	
+
+	
 	
 }

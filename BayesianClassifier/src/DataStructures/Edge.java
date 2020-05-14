@@ -43,6 +43,18 @@ public  class Edge {
 		return this.nodes[1];
 	}
 	
+	
+	public Node parent() {
+		return nodes[0]; 
+	}
+	
+	public Node child() {
+		
+		return nodes[1];
+	}
+	
+	
+	
 	public Node next() {
 		return this.nodes[1];
 		
