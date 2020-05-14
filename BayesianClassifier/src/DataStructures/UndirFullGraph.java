@@ -6,13 +6,23 @@ import java.util.Map;
 
 import FileIO.Instance;
 
+/**
+ * This class represents a Undirected Fully connected graph which is a sub-type of graph data structure 
+ * @author Group 20
+ *
+ */
 public class UndirFullGraph extends Graph {
 	
 	protected ArrayList<Node> nodes = super.nodes; // array of nodes
 	protected ArrayList<Edge> edges = super.edges; // array of edges
 	
-	// constructor
-	public UndirFullGraph(Instance Xi) {
+	/**
+	 * Constructor method
+	 * @param Xi Data set instance 
+	 * @exception NullPointerException
+	 * @see 
+	 */
+	public UndirFullGraph(Instance Xi) {// constructor
 
 		super.ne = 0;
 
@@ -28,7 +38,7 @@ public class UndirFullGraph extends Graph {
 		InitNodes(Xi);
 
 	}
-
+	
 	private void InitNodes(Instance Xi) {
 
 		for (int i = 0; i < super.n; ++i) {
@@ -48,7 +58,11 @@ public class UndirFullGraph extends Graph {
 			}
 		}
 	}
-
+	
+	/**
+	 * This method connect the Node 1 to the Node e with edge e
+	 * @return None
+	 */
 	public void connect(Node n1, Node n2, Edge e) {
 
 		// add node n2 to the connected nodes list of n1
@@ -62,6 +76,10 @@ public class UndirFullGraph extends Graph {
 
 	}
 
+	/**
+	 *  The method prints the graph  to the command line  
+	 * 	@return None
+	 */
 	public void printGraph() {
 		for (Node X : nodes) {
 			System.out.print(X.name() + " ID=" + X.ID + " Edges=[");
@@ -71,7 +89,11 @@ public class UndirFullGraph extends Graph {
 			System.out.println("]");
 		}
 	}
-
+	
+	/**
+	 * Prints the nodes of this graph
+	 * @returns None
+	 */
 	public void printNodes() {
 		System.out.print("Nodes [");
 		for (Node X : nodes) {
@@ -81,14 +103,10 @@ public class UndirFullGraph extends Graph {
 	}
 
 	/**
-	 * updateWeight
-	 * 
-	 * @category method
-	 * @provides updates edge's weight
+	 * Method updates edge's weight
 	 * @return None
-	 * @author brunocfigueiredo
+	 *
 	 */
-
 	public void updateWeight(Edge e, double weight) {
 
 		if (e.weight() != -1) { // Alert user from a possible mistake
@@ -99,37 +117,35 @@ public class UndirFullGraph extends Graph {
 	}
 
 	/**
-	 * addNewNode
-	 * 
-	 * @category method
-	 * @provides adds node to adjacency matrix
+	 * addNewNode method adds node to the graph
 	 * @return None
-	 * @author brunocfigueiredo
 	 */
-
 	public void addNewNode(Node n) {
 		this.nodes.add(n);
 
 	}
 
 	/**
-	 * addNewEdge
-	 * 
-	 * @category method
-	 * @provides adds node to adjacency matrix
+	 * addNewEdge method adds edge to the graph
 	 * @return None
-	 * @author brunocfigueiredo
 	 */
-
 	public void addNewEdge(Edge e) {
 		this.edges.add(e);
 
 	}
 
+	/**
+	 * the method returns the list of edges 
+	 * @return ArrayList<Edge> list of edges
+	 */
 	public ArrayList<Edge> getEdges() {
 		return edges;
 	}
 
+	/**
+	 * the method returns the list of nodes
+	 * @return ArrayList<Node> list of nodes
+	 */
 	public ArrayList<Node> getNodes() {
 		return nodes;
 	}
@@ -152,7 +168,11 @@ public class UndirFullGraph extends Graph {
 		}
 		return clone;
 	}
-
+	
+	/**
+	 * the method calculates the Maximum spanning Tree using Prim's algorithm and returns the respective MST Tree  
+	 * @return Tree returns a graph's MST
+	 */
 	public Tree MST() {		// Prim
 
 		Tree T = new Tree(); // Create the structure for the MST
@@ -197,11 +217,18 @@ public class UndirFullGraph extends Graph {
 
 	}
 
+	/**
+	 * Gives the number of edges in the Graph
+	 * @return int number of edges
+	 */
 	public int Nedges() {
 
 		return super.ne;
 	}
-
+	/**
+	 * Gives the number of nodes in the Graph
+	 * @return int number of nodes
+	 */
 	public int Nnodes() {
 		return super.n;
 	}

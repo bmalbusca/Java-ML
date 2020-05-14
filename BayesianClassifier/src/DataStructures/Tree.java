@@ -9,7 +9,11 @@ import java.util.Set;
 import FileIO.Dataset;
 
 
-
+/**
+ * This class represents a Tree data structure and is a sub-type of graph type  
+ * @author Group 20
+ *
+ */
 public class Tree extends Graph{
 	
 	protected ArrayList<Node> nodes = super.nodes;// array of nodes
@@ -17,8 +21,10 @@ public class Tree extends Graph{
 	protected Node Root;
 	
 	
-	//constructor
-	public Tree() {	 
+	/**
+	 * Constructor method. Initialize the inherited attributes 
+	 */
+	public Tree() {	 //constructor
 	
 		super.ne=0;
 		super.n=0;
@@ -27,7 +33,10 @@ public class Tree extends Graph{
 
 	
 	
-	
+	/**
+	 * This method connect the Node 1 to the Node e with edge e
+	 * @return None
+	 */
 	public void connect(Node n1, Node n2, Edge e) {
 		
 		//add node n2 to the connected nodes list of n1
@@ -40,7 +49,10 @@ public class Tree extends Graph{
 
 	}
 
-	
+	/**
+	 *  The method prints the graph  to the command line  
+	 * 	@return None
+	 */
 	public void printGraph() {
 		for(Edge e : edges) {
 			System.out.println(e.nodes[1].name()+"-"+e.nodes[0].name());
@@ -58,6 +70,10 @@ public class Tree extends Graph{
 		}
 	}
 	
+	/**
+	 * Prints the nodes of this graph
+	 * @return None
+	 */
 	public void printNodes() {
 		System.out.print("Nodes [");
 		for(Node X : nodes) {
@@ -67,14 +83,10 @@ public class Tree extends Graph{
 	}
 		
 	
-	/** addNewNode
-	 * @category method
-	 * @provides adds node to adjacency matrix
+	/**
+	 *  adds a node to graph and updates the attribute that saves the total number of nodes in this graph 
 	 * @return None
-	 * @author brunocfigueiredo
 	 */
-
-
 	public void addNewNode( Node n) {
 		this.nodes.add(n);
 		super.n++;
@@ -82,31 +94,36 @@ public class Tree extends Graph{
 	}
 
 	
-	/** addNewEdge
-	 * @category method
-	 * @provides adds node to adjacency matrix
+	/** 
+	 * method adds an edge to edges list
 	 * @return None
-	 * @author brunocfigueiredo
 	 */
-
-
 	public void addNewEdge( Edge e) {
 		this.edges.add(e);
 		
 	}
 	
 	
-	
+	/**
+	 * Returns all edges of this graph
+	 * @return ArrayList<Edge> list of edges
+	 */
 	public ArrayList<Edge> getEdges(){
 		return edges;
 	}
 	
-	
+	/**
+	 * Returns all nodes of this graph
+	 * @return ArrayList<Nodes> list of nodes
+	 */
 	public ArrayList<Node> getNodes(){
 		return nodes;
 	}
 	
-	
+	/**
+	 * Prints all edges  to the command line
+	 * @return None
+	 */
 	public void printEdges() {
 		System.out.print("Edges [");
 		for(Edge e: edges) {
@@ -115,6 +132,11 @@ public class Tree extends Graph{
 		System.out.println(" ]");
 	}
 
+	/**
+	 * Checks if graph contains already a node n
+	 * @param n node 
+	 * @return boolean return True if contains the node n and false otherwise
+	 */
 	public boolean contains(Node n) {
 		for(Node ncomp : nodes) {
 			if(ncomp.label.equals(n.label)) {
@@ -125,16 +147,26 @@ public class Tree extends Graph{
 	}
 	
 	
+	/**
+	 * Returns the root node object
+	 * @return Node object 
+	 */
 	public  Node root() {
 		return this.Root;
 	}
 	
 	
+	/**
+	 * Gives the number of edges in this Tree
+	 */
 	public int Nedges() {
 		
 		return super.ne;
 	}
-
+	
+	/**
+	 * Gives the number of nodes in this Tree
+	 */
 	public int Nnodes() {
 		return super.n;
 	}
