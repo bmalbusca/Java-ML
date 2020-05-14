@@ -69,7 +69,7 @@ public class TAN {
 		
 		
 		this.tree.printClassifier();
-		System.out.println("Time to build: "+timeBuild+ "ms");
+		System.out.println("Time to build:\t"+timeBuild+ " ms");
 		
 		
 		
@@ -85,7 +85,7 @@ public class TAN {
 		
 		long endTime = new Date().getTime();
 		this.timeTest = endTime - startTime;
-		System.out.println("Time to test: "+timeTest+ "ms");
+		System.out.println("Time to test:\t"+timeTest+ " ms");
 		
 		return predict;
 	}
@@ -133,6 +133,7 @@ public class TAN {
 		double MaxProb;
 		int c_class =0;
 
+		System.out.println("Testing the classifier:");
 		for(int i =1; i<=T.N_size; i++) {
 			Instance inst = T.getInstance(i);
 			Instance instPredict = new Instance();
@@ -154,7 +155,7 @@ public class TAN {
 
 			instPredict.set( idxC, String.valueOf(c_class)); 
 			Tpredicted.add(instPredict);
-			System.out.println("instance "+i+ " : " + c_class + " ("+inst.get(idxC)+")");
+			System.out.println("-> instance "+i+ ":\t" + c_class);
 
 		}	
 		

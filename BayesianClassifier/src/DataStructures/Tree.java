@@ -189,7 +189,6 @@ public class Tree extends Graph{
 				int	NKjc = data.Nc[c];
 
 				Root.theta[0][k][c] = ((double)(Npjkc + 0.5)) / ((double)(NKjc + Root.ri * 0.5));
-				System.out.println("theta_"+Root.ID+0+k+c+" -> "+Root.theta[0][k][c]);
 			}
 		}		
 		
@@ -201,7 +200,6 @@ public class Tree extends Graph{
 			int parentRange = parent.ri;
 			int childRange = child.ri;
 			int parentID = parent.ID;
-			int childID = child.ID;
 
 			child.theta = new double[parentRange][childRange][data.N_classes];
 
@@ -214,7 +212,6 @@ public class Tree extends Graph{
 						int	NKjc = parent.NJkc[j][c];
 
 						child.theta[j][k][c] = ((double)(Npjkc + 0.5)) / ((double)(NKjc + childRange * 0.5));
-						System.out.println("theta_"+childID+j+k+c+" -> "+child.theta[j][k][c]);
 					}
 				}
 			}

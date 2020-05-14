@@ -57,7 +57,7 @@ public class  measure {
 	
 	public double  accuracy() {
 		
-		System.out.printf("accuracy: %.2f %%", this.accValue * 100);
+		System.out.printf("Accuracy: %.2f %%", this.accValue * 100);
 		return this.accValue; 
 	}
 	
