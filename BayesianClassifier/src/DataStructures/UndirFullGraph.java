@@ -8,10 +8,8 @@ import FileIO.Instance;
 
 public class UndirFullGraph extends Graph {
 	
-	ArrayList<Node> nodes = super.nodes;// array of nodes
-	public ArrayList<Edge> edges = super.edges;// array of edges
-	//protected  node C = new node();  // can be a way to get easy access to C nodes 
-	
+	protected ArrayList<Node> nodes = super.nodes; // array of nodes
+	protected ArrayList<Edge> edges = super.edges; // array of edges
 	
 	// constructor
 	public UndirFullGraph(Instance Xi) {

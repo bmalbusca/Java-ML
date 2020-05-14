@@ -12,8 +12,8 @@ import FileIO.Dataset;
 
 public class Tree extends Graph{
 	
-	ArrayList<Node> nodes = super.nodes;// array of nodes
-	ArrayList<Edge> edges = super.edges;// array of edges 
+	protected ArrayList<Node> nodes = super.nodes;// array of nodes
+	protected ArrayList<Edge> edges = super.edges;// array of edges 
 	protected Node Root;
 	
 	
@@ -22,9 +22,6 @@ public class Tree extends Graph{
 	
 		super.ne=0;
 		super.n=0;
-		
-				
-		
 	}
 	
 
@@ -180,13 +177,13 @@ public class Tree extends Graph{
 	public void updateThetas(Dataset data) {
 		
 		// We calculate the thetas for the Root, since it is the only with no parent.
-		Root.theta = new double[1][Root.ri][data.N_classes];
+		Root.theta = new double[1][Root.ri][data.getN_classes()];
 		for (int k = 0; k < Root.ri; k++) {
-			for (int c = 0; c < data.N_classes; c++) {
+			for (int c = 0; c < data.getN_classes(); c++) {
 
 				int Npjkc = Root.Npjkc[0][0][k][c];
 
-				int	NKjc = data.Nc[c];
+				int	NKjc = data.getNc()[c];
 
 				Root.theta[0][k][c] = ((double)(Npjkc + 0.5)) / ((double)(NKjc + Root.ri * 0.5));
 			}
@@ -201,11 +198,11 @@ public class Tree extends Graph{
 			int childRange = child.ri;
 			int parentID = parent.ID;
 
-			child.theta = new double[parentRange][childRange][data.N_classes];
+			child.theta = new double[parentRange][childRange][data.getN_classes()];
 
 			for (int j = 0; j < parentRange; j++) {
 				for (int k = 0; k < childRange; k++) {
-					for (int c = 0; c < data.N_classes; c++) {
+					for (int c = 0; c < data.getN_classes(); c++) {
 
 						int Npjkc = child.Npjkc[parentID][j][k][c];
 
@@ -218,14 +215,14 @@ public class Tree extends Graph{
 		}
 		// Update theta_c
 		Node C= new Node(n+1, "C");
-		C.thetac= new double[data.N_classes];
-		C.ri = data.N_classes; 
+		C.thetac= new double[data.getN_classes()];
+		C.ri = data.getN_classes(); 
 		nodes.add(C);
 		
-		data.theta_c = new double[data.N_classes];
-		for (int i = 0; i < data.N_classes; i++) {
-			data.theta_c[i] = ((double)(data.Nc[i] + 0.5)) / ((double)(data.N_size + data.N_classes * 0.5));
-			C.thetac[i] =  data.theta_c[i];
+		data.set_thetac(new double[data.getN_classes()]);
+		for (int i = 0; i < data.getN_classes(); i++) {
+			data.get_thetac()[i] = ((double)(data.getNc()[i] + 0.5)) / ((double)(data.getN_size() + data.getN_classes() * 0.5));
+			C.thetac[i] =  data.get_thetac()[i];
 		}
 	}
 }

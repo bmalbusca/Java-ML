@@ -9,6 +9,4 @@ public interface ReadFile {
 	void close() throws FileNotFoundException;
 	
 	
-	
-	
 }

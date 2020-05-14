@@ -14,11 +14,7 @@ public  class Edge {
 		this.weight=w;
 		this.nodes[0]=n1;
 		this.nodes[1]=n2;
-		
-		
 	}
-	
-	
 	
 	//overloading 
 	public Edge(double w, Node parent, Node child, boolean directed) {

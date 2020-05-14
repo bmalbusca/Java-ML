@@ -61,13 +61,6 @@ public class ReadCSV implements ReadFile {
 				++T.N_size;
 
 			}
-			/*System.out.print("readCSV   -   Teste ri + N_classes: ");
-			for(int i = 0; i < length -1 ;i++) {
-				System.out.print(T.ri_val.get(i) + " ");
-			}
-			System.out.print(T.N_classes + " ");
-			System.out.println("");
-			*/	
 		} catch (IOException e) {
 			
 			e.printStackTrace();
@@ -119,8 +112,5 @@ public class ReadCSV implements ReadFile {
 					d.Nc[c]++;	
 		}
 	}
-	
-	
-	
 	
 }

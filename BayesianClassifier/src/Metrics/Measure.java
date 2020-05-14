@@ -34,7 +34,7 @@ public class  Measure {
 	
 	public Measure ( Dataset Cpredict,Dataset Ctest) {
 		
-		if(Cpredict.N_classes != Ctest.N_classes) {
+		if(Cpredict.getN_classes() != Ctest.getN_classes()) {
 
 			 System.err.println("Testfile and Predicted File are different!.  Must have the same number of classes");
 		     System.exit(1);
@@ -42,14 +42,14 @@ public class  Measure {
 			
 		int idC = Cpredict.getInstance(0).len()-1;
 		double correctC=0, incorrectC=0; //for accuracy measurement
-		Nc = new int[Ctest.N_classes];
-		confusionMatrix = new ArrayList<Integer[]>(Cpredict.N_classes); 
-		for(int i=0; i<Cpredict.N_classes;++i ) {
+		Nc = new int[Ctest.getN_classes()];
+		confusionMatrix = new ArrayList<Integer[]>(Cpredict.getN_classes()); 
+		for(int i=0; i<Cpredict.getN_classes();++i ) {
 			
 			confusionMatrix.add(new Integer[] {0,0,0,0}); //[FN FP TP  TN ]
 		}
 		
-		for(int i =1 ; i<= Cpredict.N_size; ++i) {	// data set iterative loop 
+		for(int i =1 ; i<= Cpredict.getN_size(); ++i) {	// data set iterative loop 
 				
 				String val1_pred, val2_test;
 				val1_pred = Cpredict.getInstance(i).get(idC);
@@ -61,7 +61,7 @@ public class  Measure {
 					
 					confusionMatrix.get(Integer.parseInt(val1_pred))[2]++; //TP
 					
-					for(int j =0; j<Cpredict.N_classes;++j) {
+					for(int j =0; j<Cpredict.getN_classes();++j) {
 						if(j== Integer.parseInt(val2_test)) {		
 							continue;
 						}	  
@@ -82,13 +82,6 @@ public class  Measure {
 			CalcSensitivity();
 			CalcF1_score();
 	}
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	protected void CalcSensitivity() { 

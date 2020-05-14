@@ -11,7 +11,7 @@ public abstract class ScoreModel {
 	 * 
 	 * @return Weight of the edge
 	 */
-	public abstract double calculate(Edge edge, Dataset d);
+	protected abstract double calculate(Edge edge, Dataset d);
 
 	/** Stores the logarithm base-e of 2. */
 	protected static final double ln2 = Math.log(2);

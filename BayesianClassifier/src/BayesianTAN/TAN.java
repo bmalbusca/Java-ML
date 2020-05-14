@@ -27,7 +27,7 @@ public class TAN {
 	
 	private void update_counts(Dataset d, UndirFullGraph G) {
 		ReadCSV.Nc_count(d);	
-		for(int i=0; i<d.ri_val.size(); i++)
+		for(int i=0; i<d.get_ri_val().size(); i++)
 			Node.node_counts(d, G.getNodes().get(i));	
 	}
 	
@@ -38,7 +38,7 @@ public class TAN {
 		} else if ("MDL".equals(m)) {
 			scoremodel = new MDLmodel();
 		}
-		for(Edge e : graph.edges) {
+		for(Edge e : graph.getEdges()) {
 			double weight = scoremodel.calculate(e, d);
 			graph.updateWeight(e, weight);
 		}
@@ -64,9 +64,8 @@ public class TAN {
 		timeBuild = endTime - startTime;
 	
 		this.tree = T; 
-		this.N_classes=Data.N_classes;
-		this.N_instances= Data.N_size;
-		
+		this.N_classes=Data.getN_classes();
+		this.N_instances= Data.getN_size();
 		
 		this.tree.printClassifier();
 		System.out.println("Time to build:\t"+timeBuild+ " ms");
@@ -101,7 +100,7 @@ public class TAN {
 		
 		//root
 		k = Integer.parseInt(values.get(T.root().id()));	
-		prob *= T.root().theta[0][k][c];
+		prob *= T.root().get_theta()[0][k][c];
 		for (Edge e : T.getEdges() ) {
 			
 			Node parent = e.parent(); 
@@ -110,7 +109,7 @@ public class TAN {
 			j = Integer.parseInt(values.get(parent.id())); //use parseInt()
 			k = Integer.parseInt(values.get(child.id()));	
 			
-			prob *= child.theta[j][k][c];
+			prob *= child.get_theta()[j][k][c];
 			
 		}	
 		return prob; 	
@@ -126,15 +125,15 @@ public class TAN {
 		
 		Dataset Tpredicted = new Dataset();
 		Tpredicted.add(T.getInstance(0));
-		Tpredicted.N_size=T.N_size;
-		Tpredicted.N_classes=T.N_classes;
+		Tpredicted.setN_size(T.getN_size());
+		Tpredicted.setN_classes(T.getN_classes());
 		
-		double[] probs = new double[C.ri];
+		double[] probs = new double[C.get_ri()];
 		double MaxProb;
 		int c_class =0;
 
 		System.out.println("Testing the classifier:");
-		for(int i =1; i<=T.N_size; i++) {
+		for(int i =1; i<=T.getN_size(); i++) {
 			Instance inst = T.getInstance(i);
 			Instance instPredict = new Instance();
 			
@@ -142,8 +141,8 @@ public class TAN {
 			MaxProb = 0;
 			
 			
-			for (int c = 0; c < C.ri; c++) {
-				probs[c] = JointProbC(inst, c, tree ) * C.thetac[c];
+			for (int c = 0; c < C.get_ri(); c++) {
+				probs[c] = JointProbC(inst, c, tree ) * C.get_thetac()[c];
 			
 				if (probs[c] > MaxProb) {
 					MaxProb = probs[c];

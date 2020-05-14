@@ -12,13 +12,13 @@ public class MDLmodel extends LLmodel {
 	 */
 
 	@Override
-	public double calculate(Edge edge, Dataset d) {
+	protected double calculate(Edge edge, Dataset d) {
 		Node child = edge.nodes()[0];	
 		Node parent = edge.nodes()[1];
-		double s = d.N_classes;
-		double N = d.N_size;
+		double s = d.getN_classes();
+		double N = d.getN_size();
 		double LL = super.calculate(edge, d);
-		double penalization = s * ((double) ((child.ri - 1) * (parent.ri - 1)) / 2) * Math.log(N);
+		double penalization = s * ((double) ((child.get_ri() - 1) * (parent.get_ri() - 1)) / 2) * Math.log(N);
 
 		return LL - penalization;
 	}

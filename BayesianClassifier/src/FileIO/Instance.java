@@ -8,7 +8,7 @@ import java.util.Collections;
 public class Instance {
 
 	protected int size=0;
-	public ArrayList<String> row = new ArrayList<String>();
+	protected ArrayList<String> row = new ArrayList<String>();
 	
 	
 	

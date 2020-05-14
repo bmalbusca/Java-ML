@@ -13,9 +13,6 @@ public class InputParams {
 	protected String[] availableScore = {"LL", "MDL"} ;
 	
 	
-	
-	
-	
 	public InputParams(String[] args) {
 		 
 		if(args.length < 3) {
@@ -30,9 +27,6 @@ public class InputParams {
 		testFile(this.trainfile);
 		testFile(this.testfile);
 		testScoreOption(this.score);
-		
-
-	
 	}
 	
 	
@@ -44,10 +38,6 @@ public class InputParams {
 			System.err.println("The file " + filepath + " not exists");
 	        System.exit(1);
 		    }
-		
-		
-		
-		
 	}
 	
 	
@@ -57,11 +47,6 @@ public class InputParams {
 			System.err.println("Score model option " + option + " not exists. Should be: " + Arrays.asList(availableScore) );	
 	        System.exit(1);
 		}
-		 
 	}
 
-
-	
-	
-	
 }
