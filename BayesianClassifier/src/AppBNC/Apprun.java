@@ -44,6 +44,15 @@ public class Apprun {
 	
 		measure  metrics = new measure(predict ,fileTest.data());
 		metrics.accuracy();
+		
+		System.out.println();
+		for(double val: metrics.sensitivity()) {
+			System.out.print(" "+ val+ " ");
+		}
+		System.out.println();
+		for(double val: metrics.specificity()) {
+			System.out.print(" "+ val+ " ");
+		}
 	}
 
 	
