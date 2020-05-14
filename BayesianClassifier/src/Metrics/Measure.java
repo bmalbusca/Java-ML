@@ -78,8 +78,8 @@ public class  Measure {
 			}
 	
 			this.accValue = correctC/(incorrectC + correctC);
-			CalcSensitivity();
 			CalcSpecificity();
+			CalcSensitivity();
 			CalcF1_score();
 	}
 	
@@ -174,17 +174,17 @@ public class  Measure {
 	public void print() {
 		
 		System.out.printf("Resume:\nAccuracy: %.2f %%\n", this.accuracy() * 100);
-		System.out.println("\t\tSensitivity\tSpecificity\tF1score \tClass");
+		System.out.println("\t\tSpecificity\tSensitivity\tF1score \tClass");
 		int avgID = confusionMatrix.size();  // Position for the weighted avg
 		for(int i=0; i < avgID; i++) { //[FN FP TP  TN ]			
-			System.out.printf("\t\t%.3f\t", this.sensitivity()[i]);
-			System.out.printf("\t%.3f\t", this.specificity()[i]);
+			System.out.printf("\t\t%.3f\t", this.specificity()[i]);
+			System.out.printf("\t%.3f\t", this.sensitivity()[i]);
 			System.out.printf("\t%.3f\t", this.F1_score()[i]);
 			System.out.println("\t" + i);
 		}
 		System.out.print("Weighted Avg.");
-		System.out.printf("\t%.3f", this.sensitivity()[avgID]);
-		System.out.printf("\t\t%.3f", this.specificity()[avgID]);
+		System.out.printf("\t%.3f", this.specificity()[avgID]);
+		System.out.printf("\t\t%.3f", this.sensitivity()[avgID]);
 		System.out.printf("\t\t%.3f", this.F1_score()[avgID]);
 	}	
 	
