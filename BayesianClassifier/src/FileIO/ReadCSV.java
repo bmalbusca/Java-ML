@@ -4,7 +4,12 @@ import java.io.*;
 import java.util.ArrayList;
 
 
-
+/**
+ * ReadCSV class reads an CSV file and save it to a Dataset . Also, count the number of occurrences and update the Daset attributes 
+ * This class implements the interface ReadFile
+ * @author Group 20
+ *
+ */
 public class ReadCSV implements ReadFile {
 	
 	protected BufferedReader file;
@@ -67,7 +72,9 @@ public class ReadCSV implements ReadFile {
 		}
 	}
 		
-		
+	/**
+	 * method used to close the file	
+	 */
 	public void close() throws FileNotFoundException {
 		
 		try {
@@ -78,7 +85,9 @@ public class ReadCSV implements ReadFile {
 			}
 		
 	}
-	
+	/**
+	 * method used to print read data 
+	 */
 	public void print() {
 		
 		if (T != null && this.T.N_size > 0) {
@@ -92,10 +101,19 @@ public class ReadCSV implements ReadFile {
 	}
 	
 	
+	/**
+	 * Returns the read into a Dataset type
+	 * @return Dataset read data
+	 */
 	public Dataset data(){
 		return T;
 	}
 	
+	/**
+	 * Used to  get a specific row fromread data
+	 * @param row_id
+	 * @return Instance returns a row at row_id index from the read data 
+	 */
 	public Instance get(int row_id) {
 		return T.getInstance( row_id );
 	}
