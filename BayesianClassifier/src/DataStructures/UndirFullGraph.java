@@ -149,7 +149,7 @@ public class UndirFullGraph extends Graph {
 	public ArrayList<Node> getNodes() {
 		return nodes;
 	}
-
+	
 	protected ArrayList<Node> cloneListNodes() {
 
 		ArrayList<Node> clone = new ArrayList<Node>();

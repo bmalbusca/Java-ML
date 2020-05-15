@@ -6,7 +6,11 @@ import java.util.Date;
 
 
 
-
+/**
+ * Class with a TAN Bayes classifier.
+ * Several scoring models can be used to build the classifier.
+ * @author Group 20
+ */
 public class TAN {
 	
 	//info
@@ -19,7 +23,10 @@ public class TAN {
 	private long timeTest =0; 
 	
 
-
+	/**
+	 * Constructor
+	 * @param model String with the score model used to build the classifier
+	 */
 	public TAN(String model) {
 		this.model= model;
 
@@ -57,6 +64,12 @@ public class TAN {
 		}
 	}
 	
+	/**
+	 * Method to build the classifier. It receives the dataset with the instances of the train file,
+	 * makes the undirected full graph, calculates the weight of the edges, directs the tree,
+	 * calculates the thetas and prints the tree in the terminal.
+	 * @param Data Dataset with the train instances.
+	 */
 	public void train(Dataset Data) {
 		
 	    long startTime = new Date().getTime();
@@ -86,10 +99,14 @@ public class TAN {
 	}
 	
 	
-	
-	public Dataset predict(Dataset T) {
+	/**
+	 * Method that runs classify to predict test data
+	 * @param Test The dataset with the test data
+	 * @return predict Dataset with predicted data
+	 */
+	public Dataset predict(Dataset Test) {
 		long startTime = new Date().getTime();
-		Dataset predict = Classify(T);
+		Dataset predict = Classify(Test);
 		
 		long endTime = new Date().getTime();
 		this.timeTest = endTime - startTime;
@@ -97,11 +114,14 @@ public class TAN {
 		
 		return predict;
 	}
-
 	
-	
-	
-	
+	/**
+	 * Method that calculates the joint probability of the class, according to the values in an instance.
+	 * @param values Instance of the test data to classify
+	 * @param c Represents the class for which we are calculating the probability
+	 * @param T Tree with the train data
+	 * @return prob Calculated probability.
+	 */
 	private double JointProbC(Instance values, int c,  Tree T) {
 	
 		double prob =1;
@@ -124,9 +144,11 @@ public class TAN {
 		return prob; 	
 	}
 	
-	
-	
-	
+	/**
+	 * Method that classifies the test data
+	 * @param T Dataset with the test data
+	 * @return Tpredicted Dataset with updated classes according to the prediction.
+	 */
 	public Dataset Classify(Dataset T) {
 		
 		int  idxC = tree.Nnodes();
@@ -163,8 +185,7 @@ public class TAN {
 			Tpredicted.add(instPredict);
 			System.out.println("-> instance "+i+ ":\t" + c_class);
 
-		}	
-		
+		}			
 		return Tpredicted;  
 	
 	}
