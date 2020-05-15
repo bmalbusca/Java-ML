@@ -175,7 +175,7 @@ public class Tree extends Graph{
 	}
 	
 	/**
-	 * Chooses a node arbitrarily and transforms an undirected tree into a directed one.
+	 * Chooses the root node and transforms an undirected tree into a directed one.
 	 */
 	public void directTree() {
 
@@ -209,6 +209,10 @@ public class Tree extends Graph{
 		}
 	}
 	
+	/**
+	 * Method that calculates the thetas for the data in this Tree.
+	 * @param data Dataset that has some counts needed
+	 */
 	public void updateThetas(Dataset data) {
 		
 		// We calculate the thetas for the Root, since it is the only with no parent.
@@ -260,4 +264,5 @@ public class Tree extends Graph{
 			C.thetac[i] =  data.get_thetac()[i];
 		}
 	}
+	
 }

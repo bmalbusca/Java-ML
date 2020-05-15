@@ -65,22 +65,10 @@ public  class Edge { // vertex definition
 		return this.nodes[0];
 	}
 	
-	/**
-	 * 
-	 * @return
-	 */
-	public Node to() {
-		if(!this.directed) {
-			
-		}
-		return this.nodes[1];
-	}
-	
-	
 	
 	/**
-	 * 
-	 * @return Node
+	 * This method is used to find the start/parent node of a edge
+	 * @return Node return the parent node of this edge
 	 */
 	public Node parent() {
 		return nodes[0]; 
@@ -123,7 +111,7 @@ public  class Edge { // vertex definition
 	}
 	
 	/**
-	 * method used for create a clone of this edge
+	 * method used to create a clone of this edge
 	 * @return Edge returns a edge object with equal parameters
 	 */
 	public Edge clone() {

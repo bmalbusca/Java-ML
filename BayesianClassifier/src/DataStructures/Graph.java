@@ -29,7 +29,6 @@ public  abstract class Graph {
 	 */
 	protected ArrayList<Edge> edges = new ArrayList<Edge>();  	// array of edges 
 	
-	
 	abstract public void printGraph();
 	abstract public void printNodes();
 	abstract public void connect(Node n1, Node n2, Edge e);
@@ -38,7 +37,4 @@ public  abstract class Graph {
 	abstract public int Nnodes();
 	abstract public int Nedges();
 	
-	
-
-
 }

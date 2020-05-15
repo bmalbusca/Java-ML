@@ -25,8 +25,8 @@ public class Node implements  Cloneable {
 									//Useful data to calculate the weigths
 	protected int ri;				// N values that xi can take
 	protected int Npjkc[][][][];	// [p][j][k][c] ->p=parent ;   j-> parent value
-	protected int NJkc[][];			// sum(Nijkc, j={1,..,qi}) - Number of instances where Xi takes its k-th value xik and C class takes c-th value
-	protected double theta[][][];	//theta values
+	protected int NJkc[][];			// Number of instances where Xi takes its k-th value xik and C class takes c-th value
+	protected double theta[][][];	// theta values
 	protected double thetac[];
 	protected ArrayList<Edge> edges = new ArrayList<Edge>(); 		//edges seen by this node Xi
 	protected Map<Edge, Node> map = new HashMap< Edge,Node>();		//Fast search for nodes-edge pairs
@@ -57,6 +57,10 @@ public class Node implements  Cloneable {
 		return Npjkc;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public int[][] get_NJkc() {
 		return NJkc;
 	}
@@ -127,8 +131,7 @@ public class Node implements  Cloneable {
 	/**
 	 * Method sorts the edge list by weight value in a decreasing order
 	 * @return None
-	 */
-	
+	 */	
 	public void sortEdges() {
 		Collections.sort(edges,new EdgeCompare()); //Sort edge list
 	}
