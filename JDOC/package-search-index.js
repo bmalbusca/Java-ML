@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"m":"BayesianClassifier","l":"appBNC"},{"m":"BayesianClassifier","l":"bayesianTAN"},{"m":"BayesianClassifier","l":"dataStructures"},{"m":"BayesianClassifier","l":"fileIO"},{"m":"BayesianClassifier","l":"metrics"}]
